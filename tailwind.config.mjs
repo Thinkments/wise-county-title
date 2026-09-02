@@ -4,18 +4,33 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Wise County Title Authentic Brand Palette (Burgundy / Wine / Maroon)
+        burgundy: {
+          50: '#FDF8F8',
+          100: '#F8EEEE',
+          200: '#ECCDD0',
+          300: '#DDA4AA',
+          400: '#BA6571',
+          500: '#963847',
+          600: '#842F38', // Wise County Accent
+          700: '#6E222E',
+          800: '#602430', // Official Wise County Title Primary Burgundy (#602430 / #612430)
+          900: '#481620',
+          950: '#2A0B12',
+        },
+        // Legacy navy alias mapped to deep burgundy / midnight tones
         navy: {
-          50: '#F0F5FA',
-          100: '#E1EBF5',
-          200: '#B8CEE5',
-          300: '#8FB1D5',
-          400: '#5287BF',
-          500: '#1A5BA2',
-          600: '#134780',
-          700: '#133C55', // Slate Secondary
-          800: '#0E2E4B',
-          900: '#0B2545', // Heritage Navy Primary
-          950: '#061528',
+          50: '#FDF8F8',
+          100: '#F8EEEE',
+          200: '#ECCDD0',
+          300: '#DDA4AA',
+          400: '#BA6571',
+          500: '#842F38',
+          600: '#732530',
+          700: '#6E222E',
+          800: '#602430',
+          900: '#481620', // Primary Dark Heritage
+          950: '#2A0B12', // Deep Hero Dark
         },
         gold: {
           50: '#FAF7EE',
@@ -30,11 +45,11 @@ export default {
           900: '#4D3A0A',
         },
         surface: {
-          DEFAULT: '#F8FAFC',
+          DEFAULT: '#FAF8F8',
           50: '#FFFFFF',
-          100: '#F8FAFC',
-          200: '#F1F5F9',
-          300: '#E2E8F0',
+          100: '#FAF8F8',
+          200: '#F3EEEE',
+          300: '#E6DCDC',
           400: '#CBD5E1',
           500: '#94A3B8',
           600: '#64748B',
@@ -45,14 +60,15 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'Cambria', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'Times', 'serif'],
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       boxShadow: {
-        'card': '0 4px 20px -2px rgba(11, 37, 69, 0.08), 0 2px 6px -1px rgba(11, 37, 69, 0.04)',
-        'card-hover': '0 12px 30px -4px rgba(11, 37, 69, 0.15), 0 4px 10px -2px rgba(11, 37, 69, 0.06)',
+        'card': '0 4px 20px -2px rgba(96, 36, 48, 0.08), 0 2px 6px -1px rgba(96, 36, 48, 0.04)',
+        'card-hover': '0 12px 30px -4px rgba(96, 36, 48, 0.15), 0 4px 10px -2px rgba(96, 36, 48, 0.06)',
         'gold-glow': '0 0 25px -3px rgba(197, 155, 39, 0.35)',
+        'burgundy-glow': '0 0 25px -3px rgba(96, 36, 48, 0.35)',
       },
     },
   },

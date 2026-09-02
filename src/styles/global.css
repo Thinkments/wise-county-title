@@ -4,20 +4,21 @@
 
 @layer base {
   :root {
-    --navy-primary: #0B2545;
-    --navy-secondary: #133C55;
+    --burgundy-primary: #602430;
+    --burgundy-secondary: #842F38;
+    --burgundy-dark: #2A0B12;
     --gold-accent: #C59B27;
     --gold-hover: #D8AA2F;
-    --surface-bg: #F8FAFC;
-    --text-charcoal: #1E293B;
-    --text-muted: #64748B;
+    --surface-bg: #FAF8F8;
+    --text-charcoal: #1E1A1B;
+    --text-muted: #645A5C;
   }
 
   html {
     scroll-behavior: smooth;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    color: #1E293B;
-    background-color: #F8FAFC;
+    color: #1E1A1B;
+    background-color: #FAF8F8;
   }
 
   /* Accessible focus indicators */
@@ -33,7 +34,7 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-navy-900 hover:bg-navy-800 transition-all duration-200 shadow-md hover:shadow-lg border border-navy-700/50 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[48px];
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-navy-800 hover:bg-navy-900 transition-all duration-200 shadow-md hover:shadow-lg border border-navy-700 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[48px];
   }
 
   .btn-gold {
@@ -77,7 +78,6 @@
   }
   h1, h2, h3 {
     page-break-after: avoid;
-    color: #0B2545 !important;
+    color: #602430 !important;
   }
 }
-

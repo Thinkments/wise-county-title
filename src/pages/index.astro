@@ -31,9 +31,17 @@ import {
   
   <!-- HERO SECTION -->
   <section class="relative bg-gradient-to-b from-navy-950 via-navy-900 to-navy-900 text-white pt-12 pb-20 sm:pt-16 sm:pb-28 overflow-hidden">
-    <!-- Ambient gold/navy background glow -->
+    <!-- Authentic Courthouse Background Overlay -->
+    <div class="absolute inset-0 z-0 opacity-15 mix-blend-luminosity pointer-events-none">
+      <img 
+        src="/images/wise-courthouse.jpg" 
+        alt="Wise County Courthouse Decatur Texas" 
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <!-- Ambient gold/burgundy background glow -->
     <div class="absolute top-1/4 -left-32 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 -right-32 w-96 h-96 bg-navy-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 -right-32 w-96 h-96 bg-navy-800/30 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
@@ -54,6 +62,7 @@ import {
           <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
             Where 148 years of sovereignty title plant heritage meets friction-free closing technology for realtors, lenders, homeowners, and agricultural investors.
           </p>
+
 
           <!-- Core Call to Actions -->
           <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
@@ -280,28 +289,36 @@ import {
           </div>
         </div>
 
-        <div class="lg:col-span-5 bg-gradient-to-br from-navy-900 to-navy-800 p-8 rounded-3xl border border-gold-500/30 space-y-6 shadow-2xl">
-          <div class="font-serif font-bold text-xl text-white">Title Plant Quick Facts</div>
-          <ul class="space-y-3 text-xs text-slate-300">
+        <div class="lg:col-span-5 bg-gradient-to-br from-navy-900 to-navy-800 p-6 sm:p-8 rounded-3xl border border-gold-500/30 space-y-5 shadow-2xl overflow-hidden">
+          <div class="relative h-48 rounded-2xl overflow-hidden border border-navy-700 shadow-md">
+            <img 
+              src="/images/title-plant-archive.jpg" 
+              alt="Wise County Sovereignty Title Plant Historical Tract Books" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute bottom-2 left-2 px-3 py-1 rounded-lg bg-navy-950/80 backdrop-blur-sm text-[11px] font-semibold text-gold-300 border border-gold-500/30">
+              📚 Wise County Sovereignty Tract Books
+            </div>
+          </div>
+
+          <div class="font-serif font-bold text-lg text-white">Title Plant Direct Access</div>
+          <ul class="space-y-2.5 text-xs text-slate-300">
             <li class="flex items-start gap-2.5">
               <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-              <span>Fully indexed card systems through 1997 + modern computerized database to present day.</span>
+              <span>Fully indexed tract books through 1997 + modern computerized database to present day.</span>
             </li>
             <li class="flex items-start gap-2.5">
               <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-              <span>Public access available for landmen, attorneys, surveyors, and independent title researchers.</span>
-            </li>
-            <li class="flex items-start gap-2.5">
-              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
-              <span>Backed by 6 national title insurance underwriters for multi-million dollar commercial capacity.</span>
+              <span>Public access available for landmen, attorneys, surveyors, and title researchers.</span>
             </li>
           </ul>
 
-          <div class="p-4 bg-navy-950 rounded-2xl border border-navy-800 text-xs">
+          <div class="p-3.5 bg-navy-950 rounded-2xl border border-navy-800 text-xs">
             <div class="font-bold text-gold-400">Decatur Title Plant Hours:</div>
-            <p class="text-slate-400 mt-1">Monday – Friday: 8:00 AM – 12:00 PM & 1:00 PM – 5:00 PM</p>
+            <p class="text-slate-400 mt-0.5">Monday – Friday: 8:00 AM – 12:00 PM & 1:00 PM – 5:00 PM</p>
           </div>
         </div>
+
 
       </div>
 
