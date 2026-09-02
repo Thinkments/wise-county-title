@@ -52,3 +52,6 @@ data/exports/*
 # IDE & OS
 .DS_Store
 Thumbs.db
+
+# Local Netlify folder
+.netlify

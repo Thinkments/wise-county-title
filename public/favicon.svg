@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
   <defs>
     <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E2B842" />
+      <stop offset="0%" stop-color="#F2D06B" />
       <stop offset="50%" stop-color="#C59B27" />
       <stop offset="100%" stop-color="#9A7B1C" />
     </linearGradient>
@@ -15,10 +15,24 @@
   <circle cx="50" cy="50" r="48" fill="url(#navy-grad)" stroke="url(#gold-grad)" stroke-width="3" />
   <circle cx="50" cy="50" r="43" fill="none" stroke="url(#gold-grad)" stroke-width="1" stroke-dasharray="2,2" opacity="0.6" />
   
-  <!-- Texas Star -->
-  <path d="M50 16 L57 32 L74 33 L61 44 L65 61 L50 51 L35 61 L39 44 L26 33 L43 32 Z" fill="url(#gold-grad)" />
+  <!-- Stylized Owl Icon -->
+  <path d="M50 20 C38 20 30 30 30 45 C30 63 41 75 50 75 C59 75 70 63 70 45 C70 30 62 20 50 20 Z" fill="#0A223E" stroke="url(#gold-grad)" stroke-width="2" />
   
-  <!-- Center Monogram WCTC -->
-  <text x="50" y="74" font-family="Georgia, serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle" letter-spacing="1">WISE</text>
-  <text x="50" y="86" font-family="sans-serif" font-size="7" font-weight="600" fill="#C59B27" text-anchor="middle" letter-spacing="2">EST. 1878</text>
+  <!-- Owl Horns -->
+  <path d="M34 25 L26 13 L40 22 Z" fill="url(#gold-grad)" />
+  <path d="M66 25 L74 13 L60 22 Z" fill="url(#gold-grad)" />
+
+  <!-- Owl Eyes -->
+  <circle cx="42" cy="38" r="9" fill="#FFFFFF" stroke="url(#gold-grad)" stroke-width="1.5" />
+  <circle cx="58" cy="38" r="9" fill="#FFFFFF" stroke="url(#gold-grad)" stroke-width="1.5" />
+  <circle cx="42" cy="38" r="4.5" fill="#0B2545" />
+  <circle cx="58" cy="38" r="4.5" fill="#0B2545" />
+  <circle cx="44" cy="36" r="1.5" fill="#FFFFFF" />
+  <circle cx="60" cy="36" r="1.5" fill="#FFFFFF" />
+
+  <!-- Beak -->
+  <polygon points="50,43 46,51 54,51" fill="url(#gold-grad)" />
+
+  <!-- Est 1878 Text below -->
+  <text x="50" y="87" font-family="'Georgia', serif" font-size="8" font-weight="bold" fill="#C59B27" text-anchor="middle" letter-spacing="1">EST. 1878</text>
 </svg>

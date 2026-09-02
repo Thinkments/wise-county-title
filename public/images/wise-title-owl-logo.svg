@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldLinear" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D06B" />
+      <stop offset="50%" stop-color="#C59B27" />
+      <stop offset="100%" stop-color="#997514" />
+    </linearGradient>
+    <linearGradient id="navyLinear" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#102D52" />
+      <stop offset="100%" stop-color="#061528" />
+    </linearGradient>
+  </defs>
+
+  <!-- Owl Icon & Seal Badge -->
+  <g transform="translate(10, 8)">
+    <!-- Outer Shield / Circle -->
+    <circle cx="42" cy="42" r="40" fill="url(#navyLinear)" stroke="url(#goldLinear)" stroke-width="2.5" />
+    <circle cx="42" cy="42" r="36" fill="none" stroke="url(#goldLinear)" stroke-width="0.8" stroke-dasharray="2,2" opacity="0.7" />
+    
+    <!-- Stylized Wise Owl Emblem -->
+    <!-- Owl Body -->
+    <path d="M42 20 C32 20 25 28 25 40 C25 56 34 66 42 66 C50 66 59 56 59 40 C59 28 52 20 42 20 Z" fill="#0A223E" stroke="url(#goldLinear)" stroke-width="1.5" />
+    
+    <!-- Owl Horn Feathers -->
+    <path d="M28 24 L22 14 L34 21 Z" fill="url(#goldLinear)" />
+    <path d="M56 24 L62 14 L50 21 Z" fill="url(#goldLinear)" />
+
+    <!-- Owl Eyes & Brow -->
+    <circle cx="35" cy="35" r="7.5" fill="#FFFFFF" stroke="url(#goldLinear)" stroke-width="1.2" />
+    <circle cx="49" cy="35" r="7.5" fill="#FFFFFF" stroke="url(#goldLinear)" stroke-width="1.2" />
+    <circle cx="35" cy="35" r="3.8" fill="#0B2545" />
+    <circle cx="49" cy="35" r="3.8" fill="#0B2545" />
+    <circle cx="36.5" cy="33.5" r="1.2" fill="#FFFFFF" />
+    <circle cx="50.5" cy="33.5" r="1.2" fill="#FFFFFF" />
+
+    <!-- Beak -->
+    <polygon points="42,39 39,46 45,46" fill="url(#goldLinear)" />
+
+    <!-- Chest Plumage Lines -->
+    <path d="M36 52 Q42 56 48 52" fill="none" stroke="url(#goldLinear)" stroke-width="1.2" />
+    <path d="M34 58 Q42 62 50 58" fill="none" stroke="url(#goldLinear)" stroke-width="1.2" />
+  </g>
+
+  <!-- Typography: Wise County Title Company -->
+  <g transform="translate(105, 20)">
+    <text x="0" y="28" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="25" font-weight="800" fill="#0B2545" letter-spacing="1">
+      WISE COUNTY TITLE
+    </text>
+    <text x="1" y="47" font-family="'Playfair Display', Georgia, serif" font-size="14" font-weight="600" fill="#C59B27" letter-spacing="4">
+      COMPANY
+    </text>
+    <text x="110" y="47" font-family="'Inter', sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="1.5">
+      • EST. 1878 • THE WISE CHOICE
+    </text>
+  </g>
+</svg>
