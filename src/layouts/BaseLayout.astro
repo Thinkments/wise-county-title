@@ -1,0 +1,102 @@
+---
+import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import SchemaGraph from '../components/seo/SchemaGraph.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  pageType?: 'website' | 'article' | 'service' | 'location';
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+  reviewedByName?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
+const {
+  title = 'Wise County Title Company | Continuous Operation in Texas Since 1878',
+  description = 'Providing trusted real estate title insurance, escrow settlement, and sovereignty title plant records in Decatur, Bridgeport, and Wise County, Texas since 1878.',
+  canonicalUrl = Astro.url.href,
+  pageType = 'website',
+  datePublished,
+  dateModified,
+  authorName,
+  reviewedByName,
+  faqs,
+  breadcrumbs,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={pageType === 'article' ? 'article' : 'website'} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Wise County Title Company" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Preconnect Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" 
+      rel="stylesheet" 
+    />
+
+    <!-- Master Visibility Architecture JSON-LD Schema -->
+    <SchemaGraph 
+      pageType={pageType}
+      title={title}
+      description={description}
+      url={canonicalUrl}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      authorName={authorName}
+      reviewedByName={reviewedByName}
+      faqs={faqs}
+      breadcrumbs={breadcrumbs}
+    />
+  </head>
+  <body class="min-h-screen flex flex-col bg-surface text-slate-800 antialiased selection:bg-gold-500 selection:text-navy-950">
+    
+    <!-- Skip to Main Content Link for WCAG 2.2 AA Accessibility -->
+    <a 
+      href="#main-content" 
+      class="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-gold-500 focus:text-navy-950 focus:font-bold focus:rounded-lg focus:shadow-lg focus:outline-none"
+    >
+      Skip to main content
+    </a>
+
+    <Header />
+
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <Footer />
+
+  </body>
+</html>

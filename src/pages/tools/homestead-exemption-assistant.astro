@@ -1,0 +1,12 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import HomesteadWizard from '../../components/interactive-suite/wizards/HomesteadWizard';
+---
+
+<ToolLayout
+  title="Texas Homestead Exemption Assistant (Form 50-114) | Wise County Title"
+  description="Pre-fill your Texas Comptroller Form 50-114 and access direct county appraisal district (Wise CAD, Denton CAD, TAD) filing instructions."
+  toolName="Homestead Exemption Assistant"
+>
+  <HomesteadWizard client:load />
+</ToolLayout>

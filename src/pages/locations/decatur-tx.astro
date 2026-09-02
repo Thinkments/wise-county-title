@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { MapPin, Phone, Mail, Clock, Star, Award, ShieldCheck, Sparkles, ExternalLink } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Locations', url: '/locations' },
+  { name: 'Decatur Headquarters', url: '/locations/decatur-tx' },
+];
+---
+
+<BaseLayout
+  title="Wise County Title Co. Decatur Headquarters | Title & Escrow Services"
+  description="Main headquarters and sovereignty title plant of Wise County Title Company in Decatur, TX. 405 Park West Court. 4.9★ rating (217+ verified reviews)."
+  breadcrumbs={breadcrumbItems}
+  pageType="location"
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/40">
+        <Star className="w-3.5 h-3.5 fill-gold-400" />
+        <span>4.9★ Google Business Profile • 217+ Reviews</span>
+      </div>
+
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Decatur Headquarters & Sovereignty Title Plant
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        405 Park West Court, Decatur, TX 76234. Full-service escrow operations, comfortable closing suites, and the only sovereignty title plant in Wise County.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 pt-2">
+        <a href="tel:+19406273581" class="btn-gold text-xs flex items-center gap-1.5">
+          <Phone className="w-4 h-4" /> Call Decatur: (940) 627-3581
+        </a>
+        <a 
+          href="https://www.google.com/maps/search/?api=1&query=Wise+County+Title+Co+Decatur+TX&query_place_id=ChIJDQFBOafRTYYR41NhXrZizco" 
+          target="_blank" 
+          rel="noopener" 
+          class="btn-outline text-xs text-navy-950 bg-white flex items-center gap-1.5"
+        >
+          <span>Get Driving Directions</span>
+          <ExternalLink className="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+            Decatur Closing Services & Executive Team
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Our Decatur headquarters houses our primary escrow management team, underwriting supervisors, and sovereignty title examiners. We handle residential home purchases, new construction spec takedowns, rural farm & ranch closings, and commercial developments.
+          </p>
+
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4 text-xs">
+            <div class="font-bold text-navy-950 text-sm">Decatur Office Leadership:</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <div class="font-bold text-slate-900">Ken R. Dodson</div>
+                <div class="text-slate-500">President & Title Plant Supervisor</div>
+              </div>
+              <div>
+                <div class="font-bold text-slate-900">Debbie Remmele Leatherman</div>
+                <div class="text-slate-500">Vice President & Closing Department Manager</div>
+              </div>
+              <div>
+                <div class="font-bold text-slate-900">Vicki Conquest-Niblett</div>
+                <div class="text-slate-500">Vice President & Policy Supervisor</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-navy-900 text-white p-8 rounded-3xl border border-gold-500/30 space-y-4 text-xs shadow-xl">
+          <div class="font-serif font-bold text-xl text-white">Branch Contact & Hours</div>
+          <div class="space-y-2 text-slate-300">
+            <p><strong>Physical Address:</strong> 405 Park West Court, Decatur, TX 76234</p>
+            <p><strong>Phone:</strong> (940) 627-3581</p>
+            <p><strong>Escrow Intake:</strong> orderdesk@wisetitle.com</p>
+            <p><strong>Office Hours:</strong> Monday – Friday: 8:00 AM – 5:00 PM</p>
+            <p><strong>Title Plant Hours:</strong> 8:00 AM – 12:00 PM & 1:00 PM – 5:00 PM</p>
+            <p><strong>Google Place ID:</strong> ChIJDQFBOafRTYYR41NhXrZizco</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

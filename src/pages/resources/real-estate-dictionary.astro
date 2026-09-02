@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { TITLE_GLOSSARY } from '../../lib/glossary';
+import { BookOpen, Search, ArrowRight } from 'lucide-react';
+
+const termsList = Object.values(TITLE_GLOSSARY);
+
+const breadcrumbItems = [
+  { name: 'Resources', url: '/resources' },
+  { name: 'Real Estate Title Dictionary', url: '/resources/real-estate-dictionary' },
+];
+---
+
+<BaseLayout
+  title="Real Estate & Title Insurance Dictionary | Wise County Title"
+  description="A comprehensive glossary of real estate title, escrow, survey, and Texas legal terms explained in plain English."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="badge-gold">Plain-English Legal Definitions</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Texas Real Estate & Title Glossary
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Demystifying complex title commitments, escrow terminology, mineral rights, and deed legal covenants.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {termsList.map((item) => (
+          <div class="card-premium space-y-3 flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <h2 class="font-serif font-bold text-navy-950 text-xl">{item.term}</h2>
+                <span class="badge-pillar text-[10px]">{item.category}</span>
+              </div>
+              <p class="text-xs text-slate-700 leading-relaxed">
+                {item.definition}
+              </p>
+            </div>
+            {item.deepLink && (
+              <a href={item.deepLink} class="text-xs font-bold text-gold-600 hover:text-gold-700 inline-flex items-center gap-1 pt-2">
+                <span>Read in Knowledge Hub</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { 
+  Calculator, 
+  FileText, 
+  Compass, 
+  Sparkles, 
+  Scale, 
+  Building2, 
+  DollarSign, 
+  ArrowRight,
+  ShieldCheck
+} from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Tools & Utilities', url: '/tools' },
+];
+
+const TOOLS_LIST = [
+  {
+    title: 'Texas TDI Promulgated Rate Calculator',
+    description: 'Compute exact state-promulgated basic title insurance premiums, simultaneous issue savings, and statutory endorsements (T-19, T-38, T-42, T-26).',
+    url: '/tools/tdi-rate-calculator',
+    badge: 'TDI Rule R-1',
+    icon: Calculator,
+  },
+  {
+    title: 'Texas T-47 Residential Affidavit Generator',
+    description: 'Step-by-step interactive questionnaire that generates a completed, state-compliant Texas T-47 affidavit ready for closing notarization.',
+    url: '/tools/t47-affidavit-wizard',
+    badge: 'TREC / TDI Form',
+    icon: FileText,
+  },
+  {
+    title: 'Texas Homestead Exemption Assistant',
+    description: 'Pre-fill your Texas Comptroller Form 50-114 and access direct county appraisal district (Wise CAD, Denton CAD, TAD) filing instructions.',
+    url: '/tools/homestead-exemption-assistant',
+    badge: 'Form 50-114',
+    icon: Building2,
+  },
+  {
+    title: 'North Texas Due Diligence GIS Map',
+    description: 'Interactive map layer showing Barnett Shale active/plugged gas wellheads, MUD & PID boundaries, and FEMA floodplains across Wise County.',
+    url: '/tools/property-due-diligence-map',
+    badge: 'GIS Open Data',
+    icon: Compass,
+  },
+  {
+    title: 'Texas Seller Net Sheet Calculator',
+    description: 'Estimate net cash proceeds at closing, factoring in title policies, commissions, mortgage payoffs, and Wise County tax prorations.',
+    url: '/tools/seller-net-sheet',
+    badge: 'Net Proceeds',
+    icon: DollarSign,
+  },
+  {
+    title: 'Closing Suite & Hospitality Concierge',
+    description: 'Personalize your closing day signing room ambiance, celebration toast, digital welcome board, espresso bar, or pet-friendly accommodations.',
+    url: '/tools/closing-suite-experience',
+    badge: 'White Glove',
+    icon: Sparkles,
+  },
+  {
+    title: 'The "Deal Doctor" Underwriting Triage',
+    description: 'Submit complex title clouds, heirship questions, unreleased liens, or 1031 deadlines for rapid in-house attorney roadmap from Berry White Law.',
+    url: '/tools/deal-doctor',
+    badge: 'Curative Legal',
+    icon: Scale,
+  },
+  {
+    title: '1-Click Intelligent Contract Drop',
+    description: 'Drag and drop your signed purchase agreement (PDF) for automated parsing, instant GF number assignment, and direct dispatch to escrow.',
+    url: '/order',
+    badge: 'Intake Engine',
+    icon: FileText,
+  },
+];
+---
+
+<BaseLayout
+  title="Real Estate Settlement & Title Tools Suite | Wise County Title Company"
+  description="Instant, high-utility interactive real estate tools for Texas realtors, lenders, buyers, and sellers. TDI calculators, T-47 wizards, GIS maps, and Net Sheets."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="badge-gold">Zero-Latency Client-Side Tools</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Interactive Settlement & Diligence Suite
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Engineered for real estate agents in the field, loan officers structuring Closing Disclosures, and property buyers budgeting closing costs.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TOOLS_LIST.map((tool) => {
+          const IconComp = tool.icon;
+          return (
+            <div class="card-premium flex flex-col justify-between space-y-5 hover:border-navy-900 group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <IconComp className="w-6 h-6 text-gold-600" />
+                  </div>
+                  <span class="badge-gold text-[10px]">{tool.badge}</span>
+                </div>
+
+                <h2 class="font-serif font-bold text-navy-950 text-lg group-hover:text-gold-700 transition-colors">
+                  {tool.title}
+                </h2>
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  {tool.description}
+                </p>
+              </div>
+
+              <a 
+                href={tool.url}
+                class="w-full btn-gold text-xs flex items-center justify-center gap-1.5"
+              >
+                <span>Launch Tool</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

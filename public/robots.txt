@@ -1,0 +1,12 @@
+# Robots.txt for Wise County Title Company (wisetitle.com)
+User-agent: *
+Allow: /
+
+# Disallow dynamic search filter parameters and admin endpoints
+Disallow: /*?*
+Disallow: /admin/
+Disallow: /api/
+
+# Master Sitemap Index Reference
+Sitemap: https://www.wisetitle.com/sitemap-index.xml
+Sitemap: https://www.wisetitle.com/sitemap.xml

@@ -1,0 +1,12 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import SellerNetSheet from '../../components/interactive-suite/calculators/SellerNetSheet';
+---
+
+<ToolLayout
+  title="Texas Seller Net Sheet Calculator | Wise County Title"
+  description="Estimate net cash proceeds at closing, factoring in TDI title policy premiums, broker commissions, mortgage payoffs, and tax prorations."
+  toolName="Seller Net Sheet Calculator"
+>
+  <SellerNetSheet client:load />
+</ToolLayout>

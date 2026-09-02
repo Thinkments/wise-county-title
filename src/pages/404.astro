@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { KNOWLEDGE_PILLARS } from '../lib/knowledge-taxonomy';
+import { Search, Home, ArrowRight, ShieldCheck, Phone, MapPin } from 'lucide-react';
+---
+
+<BaseLayout
+  title="Page Not Found (404) | Wise County Title Company"
+  description="The page you are looking for has moved or does not exist. Explore our 300-page Knowledge Hub or contact our Decatur and Bridgeport closing offices."
+  pageType="website"
+>
+  <div class="py-16 sm:py-24 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+      
+      <div class="space-y-3">
+        <span class="badge-gold">Error 404 • Page Moved or Renamed</span>
+        <h1 class="font-serif font-bold text-navy-950 text-4xl sm:text-6xl tracking-tight">
+          Let’s Get You to the Right Document
+        </h1>
+        <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          The link you followed may have been updated as part of our new 300-page Texas real estate and title research expansion.
+        </p>
+      </div>
+
+      <!-- Search Box -->
+      <div class="max-w-lg mx-auto">
+        <form action="/knowledge-hub" method="GET" class="relative">
+          <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
+          <input 
+            type="text"
+            name="q"
+            placeholder="Search 300 topics (e.g. 1-d-1 Ag, Lady Bird Deed, T-47)..."
+            class="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-white border border-slate-300 text-slate-900 placeholder-slate-400 font-medium text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 shadow-md"
+          />
+        </form>
+      </div>
+
+      <!-- Quick Action Navigation Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 text-left">
+        <a 
+          href="/" 
+          class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-navy-900 shadow-sm hover:shadow-card transition-all group space-y-1"
+        >
+          <div class="font-serif font-bold text-navy-950 text-sm group-hover:text-gold-700 flex items-center justify-between">
+            <span>Homepage</span>
+            <Home className="w-4 h-4 text-slate-400 group-hover:text-navy-900" />
+          </div>
+          <p class="text-xs text-slate-500">Return to the main overview and office directory.</p>
+        </a>
+
+        <a 
+          href="/tools/tdi-rate-calculator" 
+          class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-navy-900 shadow-sm hover:shadow-card transition-all group space-y-1"
+        >
+          <div class="font-serif font-bold text-navy-950 text-sm group-hover:text-gold-700 flex items-center justify-between">
+            <span>TDI Rate Calculator</span>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-navy-900" />
+          </div>
+          <p class="text-xs text-slate-500">Calculate promulgated title insurance premiums.</p>
+        </a>
+
+        <a 
+          href="/knowledge-hub" 
+          class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-navy-900 shadow-sm hover:shadow-card transition-all group space-y-1"
+        >
+          <div class="font-serif font-bold text-navy-950 text-sm group-hover:text-gold-700 flex items-center justify-between">
+            <span>Knowledge Hub</span>
+            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-navy-900" />
+          </div>
+          <p class="text-xs text-slate-500">Search our complete 300-guide research library.</p>
+        </a>
+      </div>
+
+      <!-- Direct Assistance Box -->
+      <div class="p-6 rounded-3xl bg-navy-950 text-white border border-gold-500/40 shadow-xl max-w-2xl mx-auto space-y-3 text-xs">
+        <div class="font-bold text-gold-400 uppercase tracking-wider text-[11px] flex items-center justify-center gap-1.5">
+          <ShieldCheck className="w-4 h-4" />
+          <span>Need Immediate Closing Assistance?</span>
+        </div>
+        <p class="text-slate-300 leading-relaxed">
+          Contact our escrow officers directly at our Decatur Headquarters or Bridgeport Legal Hub:
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1 font-semibold text-white">
+          <a href="tel:+19406273581" class="hover:text-gold-300 flex items-center gap-1">
+            📞 Decatur: (940) 627-3581
+          </a>
+          <span class="hidden sm:inline text-slate-500">•</span>
+          <a href="tel:+19406833581" class="hover:text-gold-300 flex items-center gap-1">
+            📞 Bridgeport: (940) 683-3581
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>

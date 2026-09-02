@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { ShieldCheck, Award, Calculator, ArrowRight, CheckCircle2 } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Services', url: '/services' },
+  { name: 'Title Insurance', url: '/services/title-insurance' },
+];
+---
+
+<BaseLayout
+  title="Texas Title Insurance Policies & TDI Rates | Wise County Title"
+  description="Owner and Lender title insurance policies promulgated by the Texas Department of Insurance (TDI) and underwritten by America's top national title insurers."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="badge-gold">Texas Basic Manual Rule R-1</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Residential & Commercial Title Insurance
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        Guaranteed indemnity against hidden ownership gaps, forged deeds, undisclosed heirs, and unreleased mortgage encumbrances.
+      </p>
+      <div class="pt-2">
+        <a href="/tools/tdi-rate-calculator" class="btn-gold text-xs">
+          <Calculator className="w-4 h-4 mr-1.5" /> Launch TDI Title Rate Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="card-premium space-y-4">
+          <span class="badge-pillar">Form T-1 / T-1R</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl">Owner's Title Policy (OTP)</h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Protects the buyer’s full equity and legal title for a one-time premium paid at closing. Coverage lasts for the entire duration of your ownership and passes automatically to your heirs.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Full legal defense costs paid by underwriter</li>
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Protection against forged deeds and prior unreleased liens</li>
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Zero recurring renewal premiums</li>
+          </ul>
+        </div>
+
+        <div class="card-premium space-y-4">
+          <span class="badge-pillar">Form T-2</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl">Lender's Title Policy (MTP)</h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Guarantees the mortgage lender that their Deed of Trust holds a first-priority, valid lien position against the property.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Mandatory for federally backed mortgages</li>
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Discounted to $100 under Simultaneous Issue (Rule R-5)</li>
+            <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Closing Protection Letters (CPL) issued instantly</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

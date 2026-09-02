@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { 
+  ShieldCheck, 
+  Building2, 
+  BookOpen, 
+  FileText, 
+  Scale, 
+  ArrowRight, 
+  CheckCircle2, 
+  Sparkles,
+  Award
+} from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Services', url: '/services' },
+];
+
+const SERVICES_LIST = [
+  {
+    title: 'Title Insurance Policies',
+    description: 'Texas Department of Insurance (TDI) promulgated Owner and Lender title policies backed by six national underwriters.',
+    url: '/services/title-insurance',
+    icon: ShieldCheck,
+    badge: 'TDI Promulgated',
+  },
+  {
+    title: 'Closings & Escrow Settlement',
+    description: 'Full-service escrow settlement for residential, commercial, agricultural, 1031 exchanges, and Remote Online Notarization (RON).',
+    url: '/services/closings-escrow',
+    icon: Building2,
+    badge: 'Hospitality Suites',
+  },
+  {
+    title: 'Sovereignty Title Plant Examination',
+    description: 'The only private, fully indexed sovereignty title plant open to the public in Wise County, Texas with tract books dating to Republic of Texas patents.',
+    url: '/services/public-title-plant',
+    icon: BookOpen,
+    badge: 'Est. 1878',
+  },
+  {
+    title: 'Curative Legal Counsel & Document Prep',
+    description: 'In-house legal drafting with The Berry White Law Firm, PLLC for Deeds, Affidavits of Heirship, Lady Bird Deeds, and lien releases.',
+    url: '/services/curative-legal-counsel',
+    icon: Scale,
+    badge: 'In-House Law Firm',
+  },
+  {
+    title: 'Title & Lien Searches (O&E Reports)',
+    description: 'Comprehensive Ownership & Encumbrance reports, municipal lien searches, judgment searches, and historical mineral disclaimers.',
+    url: '/services/title-lien-reports',
+    icon: FileText,
+    badge: 'Rapid O&E',
+  },
+];
+---
+
+<BaseLayout
+  title="Real Estate Title & Escrow Services | Wise County Title Company"
+  description="Comprehensive title insurance, escrow settlement, sovereignty title plant searches, and curative legal counsel in Decatur and Bridgeport, Texas."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="badge-gold">148 Years of Experience</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Title, Escrow & Land Settlement Services
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Serving Wise County and North Texas with thorough title examination, national underwriter backing, and dedicated in-house legal support.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {SERVICES_LIST.map((srv) => {
+          const IconComp = srv.icon;
+          return (
+            <div class="card-premium flex flex-col justify-between space-y-5 hover:border-navy-900 group">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between">
+                  <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+                    <IconComp className="w-6 h-6 text-gold-600" />
+                  </div>
+                  <span class="badge-gold text-[10px]">{srv.badge}</span>
+                </div>
+
+                <h2 class="font-serif font-bold text-navy-950 text-xl group-hover:text-gold-700 transition-colors">
+                  {srv.title}
+                </h2>
+
+                <p class="text-xs text-slate-600 leading-relaxed">
+                  {srv.description}
+                </p>
+              </div>
+
+              <a 
+                href={srv.url}
+                class="w-full btn-outline text-xs flex items-center justify-center gap-1.5 group-hover:bg-navy-900 group-hover:text-white transition-all"
+              >
+                <span>View Service Details</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          );
+        })}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

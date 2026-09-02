@@ -1,0 +1,166 @@
+---
+import { organizationSchema } from '../../lib/schema/organization';
+import { locationDecaturSchema, locationBridgeportSchema } from '../../lib/schema/locations';
+import { peopleSchemas } from '../../lib/schema/people';
+
+interface Props {
+  pageType?: 'website' | 'article' | 'service' | 'location';
+  title?: string;
+  description?: string;
+  url?: string;
+  datePublished?: string;
+  dateModified?: string;
+  authorName?: string;
+  reviewedByName?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+  breadcrumbs?: Array<{ name: string; url: string }>;
+}
+
+const {
+  pageType = 'website',
+  title = 'Wise County Title Company | Decatur & Bridgeport, TX',
+  description = 'Providing trusted real estate title insurance, escrow settlement, and sovereignty title plant records in Wise County, Texas since 1878.',
+  url = Astro.url.href,
+  datePublished = '2026-08-15',
+  dateModified = '2026-08-20',
+  authorName = 'Ken R. Dodson',
+  reviewedByName = 'Berry White, J.D.',
+  faqs,
+  breadcrumbs,
+} = Astro.props;
+
+const graph: any[] = [
+  organizationSchema,
+  locationDecaturSchema,
+  locationBridgeportSchema,
+  ...peopleSchemas,
+];
+
+// WebSite / WebPage schema with Google Sitelinks SearchBox potentialAction
+const webPageSchema: any = {
+  '@type': pageType === 'article' ? 'ItemPage' : 'WebPage',
+  '@id': `${url}#webpage`,
+  url: url,
+  name: title,
+  description: description,
+  isPartOf: {
+    '@type': 'WebSite',
+    '@id': 'https://www.wisetitle.com/#website',
+    name: 'Wise County Title Company',
+    url: 'https://www.wisetitle.com',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: 'https://www.wisetitle.com/knowledge-hub?q={search_term_string}',
+      },
+      'query-input': 'required name=search_term_string',
+    },
+  },
+};
+
+
+graph.push(webPageSchema);
+
+// If Article Page: Add Article Schema with Wikidata Entities and Texas Bar Node Binding
+if (pageType === 'article') {
+  const articleSchema: any = {
+    '@type': ['Article', 'TechArticle'],
+    '@id': `${url}#article`,
+    isPartOf: { '@id': `${url}#webpage` },
+    headline: title,
+    description: description,
+    mainEntityOfPage: url,
+    publisher: { '@id': 'https://www.wisetitle.com/#organization' },
+    author: {
+      '@type': 'Person',
+      name: authorName,
+      '@id': authorName.includes('Berry')
+        ? 'https://www.wisetitle.com/#person-berry-white'
+        : 'https://www.wisetitle.com/#person-ken-dodson',
+    },
+    reviewedBy: {
+      '@type': 'Person',
+      name: reviewedByName,
+      '@id': 'https://www.wisetitle.com/#person-berry-white',
+      jobTitle: 'Real Estate Attorney & Vice President',
+      hasCredential: {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'license',
+        name: 'State Bar of Texas License #24060820',
+      },
+    },
+    about: [
+      {
+        '@type': 'Thing',
+        name: 'Title Insurance',
+        sameAs: 'https://www.wikidata.org/wiki/Q1529124',
+      },
+      {
+        '@type': 'Thing',
+        name: 'Real Estate',
+        sameAs: 'https://www.wikidata.org/wiki/Q11422',
+      },
+      {
+        '@type': 'Place',
+        name: 'Wise County, Texas',
+        sameAs: 'https://www.wikidata.org/wiki/Q109675',
+      },
+    ],
+    mentions: [
+      {
+        '@type': 'Organization',
+        name: 'Texas Department of Insurance',
+        sameAs: 'https://www.wikidata.org/wiki/Q7707621',
+      },
+      {
+        '@type': 'LegalService',
+        name: 'The Berry White Law Firm, PLLC',
+        sameAs: 'https://www.hbwhitelaw.com/',
+      },
+    ],
+  };
+
+  if (datePublished) articleSchema.datePublished = datePublished;
+  if (dateModified) articleSchema.dateModified = dateModified;
+
+  graph.push(articleSchema);
+}
+
+// BreadcrumbList schema
+if (breadcrumbs && breadcrumbs.length > 0) {
+  const breadcrumbSchema = {
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, idx) => ({
+      '@type': 'ListItem',
+      position: idx + 1,
+      name: crumb.name,
+      item: crumb.url.startsWith('http') ? crumb.url : `https://www.wisetitle.com${crumb.url}`,
+    })),
+  };
+  graph.push(breadcrumbSchema);
+}
+
+// FAQPage schema
+if (faqs && faqs.length > 0) {
+  const faqSchema = {
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  };
+  graph.push(faqSchema);
+}
+
+const schemaJson = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': graph,
+});
+---
+
+<script type="application/ld+json" set:html={schemaJson} />

@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --navy-primary: #0B2545;
+    --navy-secondary: #133C55;
+    --gold-accent: #C59B27;
+    --gold-hover: #D8AA2F;
+    --surface-bg: #F8FAFC;
+    --text-charcoal: #1E293B;
+    --text-muted: #64748B;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1E293B;
+    background-color: #F8FAFC;
+  }
+
+  /* Accessible focus indicators */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 3px solid #C59B27;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-white bg-navy-900 hover:bg-navy-800 transition-all duration-200 shadow-md hover:shadow-lg border border-navy-700/50 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 min-h-[48px];
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-navy-950 bg-gold-500 hover:bg-gold-400 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-navy-900 focus:ring-offset-2 min-h-[48px];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold text-navy-900 bg-white hover:bg-navy-50 transition-all duration-200 border border-navy-300 shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-navy-900 focus:ring-offset-2 min-h-[48px];
+  }
+
+  .card-premium {
+    @apply bg-white rounded-2xl border border-slate-200 shadow-card hover:shadow-card-hover transition-all duration-300 p-6 md:p-8;
+  }
+
+  .badge-pillar {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-navy-100 text-navy-900 border border-navy-200;
+  }
+
+  .badge-gold {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-100 text-gold-900 border border-gold-300;
+  }
+}
+
+/* Print Optimization */
+@media print {
+  header, footer, nav, .no-print, .sticky-nav, #mobile-menu-btn {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+  main {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  table {
+    page-break-inside: avoid;
+    width: 100% !important;
+  }
+  h1, h2, h3 {
+    page-break-after: avoid;
+    color: #0B2545 !important;
+  }
+}
+

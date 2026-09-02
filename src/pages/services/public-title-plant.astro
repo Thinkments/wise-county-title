@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { BookOpen, Award, CheckCircle2, Clock, MapPin, Search } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Services', url: '/services' },
+  { name: 'Sovereignty Title Plant', url: '/services/public-title-plant' },
+];
+---
+
+<BaseLayout
+  title="Sovereignty Title Plant Records & Public Access | Wise County Title"
+  description="Wise County Title owns and operates the only private, fully indexed sovereignty title plant open to the public in Wise County, Texas. Records dating from early 1900s tract books to present."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="badge-gold">Continuous Operation Since 1878</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Wise County Sovereignty Title Plant
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        The only private, fully indexed title plant open for general public use in Wise County, Texas.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-4">
+          <span class="badge-gold">Historical Depth & Unmatched Accuracy</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+            Complete Land Records from Sovereignty to Present
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Our sovereignty title plant contains physical tract books, grantor/grantee index cards, microfilm archives, and a modern computerized database tracking every real estate conveyance, patent, deed of trust, and mineral lease executed in Wise County since the late 19th century.
+          </p>
+
+          <div class="space-y-2 text-xs text-slate-700">
+            <div class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-gold-600" /> Historical tract books dating to early 1900s</div>
+            <div class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-gold-600" /> Fully indexed card system through 1997</div>
+            <div class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-gold-600" /> Comprehensive computerized title database to present day</div>
+            <div class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-gold-600" /> Open to landmen, independent examiners, surveyors, and attorneys</div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-navy-900 text-white p-8 rounded-3xl border border-gold-500/30 space-y-4 shadow-xl text-xs">
+          <div class="font-serif font-bold text-white text-xl">Title Plant Operating Hours</div>
+          <div class="space-y-2 text-slate-300">
+            <p><strong>Morning Session:</strong> 8:00 AM – 12:00 PM</p>
+            <p><strong>Afternoon Session:</strong> 1:00 PM – 5:00 PM</p>
+            <p><strong>Location:</strong> 405 Park West Court, Decatur, TX 76234</p>
+            <p><strong>Phone:</strong> (940) 627-3581</p>
+          </div>
+          <div class="pt-2 border-t border-navy-800 text-[11px] text-slate-400">
+            Copy machines, microfilm viewers, and examiner workstations available on site.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

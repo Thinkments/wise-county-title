@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { Building2, Sparkles, Video, MapPin, CheckCircle2 } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Services', url: '/services' },
+  { name: 'Closings & Escrow', url: '/services/closings-escrow' },
+];
+---
+
+<BaseLayout
+  title="Real Estate Closings & Escrow Settlement | Wise County Title"
+  description="Full-service escrow settlement, closing suites in Decatur & Bridgeport, Remote Online Notarization (RON), and hybrid mobile closings."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="badge-gold">Decatur & Bridgeport Signing Suites</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Closing & Escrow Settlement Services
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        Experience seamless real estate settlements managed by veteran escrow officers with deep roots in Wise County.
+      </p>
+      <div class="pt-2">
+        <a href="/tools/closing-suite-experience" class="btn-gold text-xs">
+          <Sparkles className="w-4 h-4 mr-1.5" /> Launch Closing Suite Concierge
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="card-premium space-y-3">
+          <h2 class="font-serif font-bold text-navy-950 text-xl">Decatur Headquarters Suites</h2>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Spacious closing rooms at 405 Park West Court, equipped with digital welcome screens, espresso bar, and private notary signing rooms.
+          </p>
+        </div>
+
+        <div class="card-premium space-y-3">
+          <h2 class="font-serif font-bold text-navy-950 text-xl">Bridgeport Branch Suites</h2>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Conveniently located at 1602 Halsell Street, co-located with The Berry White Law Firm for instant deed and probate resolution.
+          </p>
+        </div>
+
+        <div class="card-premium space-y-3">
+          <h2 class="font-serif font-bold text-navy-950 text-xl">Remote Online Notarization (RON)</h2>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Close 100% digitally from your phone, tablet, or laptop from anywhere worldwide using secure two-way video communication.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,297 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { MASTER_300_TOPICS, KNOWLEDGE_PILLARS } from '../../../lib/knowledge-taxonomy';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('knowledge-hub');
+  
+  // Create paths from existing MDX articles
+  const mdxPaths = articles.map((entry) => {
+    return {
+      params: {
+        pillar: entry.data.pillarSlug || entry.data.pillar,
+        slug: entry.slug,
+      },
+      props: { entry, isMdx: true },
+    };
+  });
+
+  // Also create paths for all cataloged 300 topics
+  const catalogPaths = MASTER_300_TOPICS.map((topic) => ({
+    params: {
+      pillar: topic.pillar,
+      slug: topic.slug,
+    },
+    props: { topic, isMdx: false },
+  }));
+
+  // Merge, prioritizing MDX entries where available
+  const mdxSlugs = new Set(articles.map((a) => a.slug));
+  const filteredCatalogPaths = catalogPaths.filter((p) => !mdxSlugs.has(p.params.slug));
+
+  return [...mdxPaths, ...filteredCatalogPaths];
+}
+
+const { entry, topic, isMdx } = Astro.props;
+
+let articleData: any = {};
+let Content: any = null;
+let headings: any[] = [];
+
+// Determine primary interactive tool link based on pillar and topic
+let relevantTool = {
+  url: '/tools/tdi-rate-calculator',
+  name: 'TDI Promulgated Title Rate Calculator',
+  tagline: 'Calculate state-mandated title insurance premiums and simultaneous issue savings.',
+};
+
+if (entry || topic) {
+  const p = entry ? (entry.data.pillarSlug || entry.data.pillar) : topic.pillar;
+  const s = entry ? entry.slug : topic.slug;
+
+  if (p === 'ag-ranch' || s.includes('mineral') || s.includes('well') || s.includes('gis')) {
+    relevantTool = {
+      url: '/tools/property-due-diligence-map',
+      name: 'North Texas GIS Due Diligence Map',
+      tagline: 'Inspect active Barnett Shale wellheads, MUD/PID boundaries, and FEMA flood zones.',
+    };
+  } else if (s.includes('survey') || s.includes('t-47') || s.includes('t47')) {
+    relevantTool = {
+      url: '/tools/t47-affidavit-wizard',
+      name: 'Texas T-47 Residential Affidavit Wizard',
+      tagline: 'Generate accurate Paragraph 4 survey modification disclosures for closing.',
+    };
+  } else if (s.includes('tax') || s.includes('homestead') || s.includes('exemption') || s.includes('cad')) {
+    relevantTool = {
+      url: '/tools/homestead-exemption-assistant',
+      name: 'Texas Homestead Exemption Assistant',
+      tagline: 'Pre-fill Form 50-114 and calculate 10% appraisal cap savings across North Texas.',
+    };
+  } else if (p === 'title-clearance' || s.includes('lien') || s.includes('defect') || s.includes('cloud') || s.includes('probate') || s.includes('heir')) {
+    relevantTool = {
+      url: '/tools/deal-doctor',
+      name: 'The Deal Doctor Title Triage',
+      tagline: 'Asynchronously triage title clouds with in-house attorney Herman "Berry" White IV, J.D.',
+    };
+  } else if (p === 'realtor' || s.includes('net-sheet') || s.includes('proceeds')) {
+    relevantTool = {
+      url: '/tools/seller-net-sheet',
+      name: 'Texas Seller Net Sheet Estimator',
+      tagline: 'Estimate net seller proceeds with accurate tax prorations and closing fees.',
+    };
+  }
+}
+
+if (isMdx && entry) {
+  const rendered = await entry.render();
+  Content = rendered.Content;
+  headings = rendered.headings;
+  articleData = entry.data;
+} else if (topic) {
+  const pillarObj = KNOWLEDGE_PILLARS.find((p) => p.id === topic.pillar);
+  
+  // Define default headings for programmatic topic
+  headings = [
+    { depth: 2, slug: 'executive-legal-summary', text: `Legal Overview: ${topic.title}` },
+    { depth: 3, slug: 'how-texas-statutes-govern-this-area', text: `How do Texas statutes and administrative codes govern ${topic.title.toLowerCase()}?` },
+    { depth: 3, slug: 'what-are-the-common-title-defects-and-risks', text: `What are the primary title defects and transaction risks involved?` },
+    { depth: 3, slug: 'how-does-wise-county-title-resolve-and-close', text: `How does Wise County Title Company examine, clear, and close these files?` },
+    { depth: 2, slug: 'practical-closing-checklist', text: 'Step-by-Step Title Due Diligence & Closing Checklist' },
+  ];
+
+  articleData = {
+    title: topic.title,
+    description: topic.summary,
+    pillar: topic.pillar,
+    pillarName: pillarObj?.name || 'Knowledge Hub',
+    pillarSlug: topic.pillar,
+    subCluster: topic.subCluster,
+    persona: topic.persona,
+    readingTimeMinutes: 7,
+    datePublished: '2026-08-15',
+    dateModified: '2026-08-20',
+    authorName: 'Ken R. Dodson',
+    reviewedByName: 'Berry White, J.D.',
+    directAnswerSummary: `${topic.title} requires strict adherence to Texas statutory procedures, title commitment review, and proper county recordation. Clear title is achieved through comprehensive examination of sovereign tract books and in-house curative legal resolution.`,
+    directAnswerBullets: [
+      `Underwritten pursuant to Texas Department of Insurance (TDI) Basic Manual rules and Texas Property Code guidelines.`,
+      `Curative title resolution, deed preparation, and probate reviews provided in-house via The Berry White Law Firm, PLLC (Bridgeport, TX).`,
+      `Backed by the only private sovereignty title plant in Wise County (dating from Republic of Texas patents to present).`,
+    ],
+  };
+}
+
+// Find related sibling articles in the same pillar (Contextual Mesh)
+const siblingArticles = MASTER_300_TOPICS.filter((t) => t.pillar === articleData.pillar && t.slug !== (entry?.slug || topic?.slug));
+const siblingTopic = siblingArticles[0] || { title: 'Understanding Title Commitments', slug: 'title-commitment-schedules-explained', pillar: 'homeowner' };
+
+const relatedArticles = siblingArticles
+  .slice(0, 4)
+  .map((t) => ({
+    title: t.title,
+    url: `/knowledge-hub/${t.pillar}/${t.slug}`,
+    category: t.subCluster,
+  }));
+---
+
+<ArticleLayout
+  title={articleData.title}
+  description={articleData.description}
+  pillar={articleData.pillar}
+  pillarName={articleData.pillarName}
+  pillarSlug={articleData.pillarSlug}
+  persona={articleData.persona}
+  readingTimeMinutes={articleData.readingTimeMinutes}
+  datePublished={articleData.datePublished}
+  dateModified={articleData.dateModified}
+  authorName={articleData.authorName}
+  reviewedByName={articleData.reviewedByName}
+  directAnswerSummary={articleData.directAnswerSummary}
+  directAnswerBullets={articleData.directAnswerBullets}
+  headings={headings}
+  relatedArticles={relatedArticles}
+>
+  {isMdx && Content ? (
+    <Content />
+  ) : (
+    <div class="space-y-8">
+      
+      <!-- Section 1: Executive Overview -->
+      <section class="space-y-4">
+        <h2 id="executive-legal-summary" class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+          Legal Overview: {articleData.title}
+        </h2>
+        <p class="text-slate-700 leading-relaxed text-base sm:text-lg">
+          In Texas real estate and land title practice, <strong>{articleData.title}</strong> represents a cornerstone area of property rights, statutory compliance, and title insurability. Whether executing residential purchase agreements, acquiring rural ranch acreage, or structuring commercial developments, understanding how title examiners and underwriters evaluate these transactions is vital to preventing post-closing clouds on title.
+        </p>
+        <p class="text-slate-700 leading-relaxed">
+          For deeper exploration of related research topics in this domain, review our comprehensive <a href={`/knowledge-hub/${articleData.pillarSlug}`} class="text-navy-900 font-bold underline hover:text-gold-600">{articleData.pillarName} Silo</a> and see how our sibling guide on <a href={`/knowledge-hub/${siblingTopic.pillar}/${siblingTopic.slug}`} class="text-navy-900 font-bold underline hover:text-gold-600">{siblingTopic.title}</a> addresses related settlement requirements.
+        </p>
+      </section>
+
+      <!-- Conversational Passage Q&A Block 1 (PAA Indexing Target) -->
+      <section class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-4">
+        <h3 id="how-texas-statutes-govern-this-area" class="font-serif font-bold text-navy-900 text-xl sm:text-2xl">
+          How do Texas statutes and administrative codes govern {articleData.title.toLowerCase()}?
+        </h3>
+        <p class="text-slate-800 font-medium leading-relaxed">
+          Texas law strictly regulates {articleData.title.toLowerCase()} under the <strong>Texas Property Code</strong>, <strong>Texas Insurance Code Chapter 2703</strong>, and the <strong>Texas Estates Code</strong>, requiring formal execution standards, specific statutory disclosure notices, and timely recording in county official public records to establish constructive notice.
+        </p>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          Under Texas Department of Insurance (TDI) promulgated rules, title insurance underwriters cannot waive mandatory exceptions on Schedule B of the title commitment without verified documentation, bills-paid affidavits, or promulgated endorsement forms (such as Form T-19 or Form T-38). Title examiners must verify that all conveyances in the abstract chain strictly comply with statutory execution formalities.
+        </p>
+      </section>
+
+      <!-- Conversational Passage Q&A Block 2 (PAA Indexing Target) -->
+      <section class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-4">
+        <h3 id="what-are-the-common-title-defects-and-risks" class="font-serif font-bold text-navy-900 text-xl sm:text-2xl">
+          What are the primary title defects and transaction risks involved?
+        </h3>
+        <p class="text-slate-800 font-medium leading-relaxed">
+          The primary risks associated with this topic include unreleased historical deeds of trust, unprobated estate heirship claims, improper boundary descriptions, and failure to provide mandatory statutory seller notices prior to contract execution.
+        </p>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          When title defects arise on Schedule C of a Texas title commitment, transactions cannot fund or close until each objection is legally resolved through verified payoff letters, formal releases of lien, or curative affidavits. Failure to address these clouds can result in protracted litigation or loss of marketable title.
+        </p>
+      </section>
+
+      <!-- Conversational Passage Q&A Block 3 (PAA Indexing Target) -->
+      <section class="bg-slate-50 p-6 sm:p-8 rounded-2xl border border-slate-200 space-y-4">
+        <h3 id="how-does-wise-county-title-resolve-and-close" class="font-serif font-bold text-navy-900 text-xl sm:text-2xl">
+          How does Wise County Title Company examine, clear, and close these files?
+        </h3>
+        <p class="text-slate-800 font-medium leading-relaxed">
+          Wise County Title Company resolves complex title matters by conducting exhaustive title searches through our private 148-year sovereignty tract plant and collaborating directly with our in-house legal partner, <strong>The Berry White Law Firm, PLLC</strong>, to draft custom curative instruments and clear Schedule C objections on-demand.
+        </p>
+        <p class="text-slate-600 text-sm leading-relaxed">
+          With physical headquarters in Decatur (405 Park West Ct) and our branch closing hub in Bridgeport (1602 Halsell St), our escrow officers and title examiners have served Wise, Denton, Parker, and Tarrant counties continuously since 1878.
+        </p>
+      </section>
+
+      <!-- Interactive Settlement Tool Embed / Contextual CTA -->
+      <section class="p-6 sm:p-8 rounded-3xl bg-navy-950 text-white border border-gold-500/40 shadow-xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/30">
+          Interactive Settlement Utility
+        </div>
+        <h3 class="font-serif font-bold text-xl sm:text-2xl text-white">
+          {relevantTool.name}
+        </h3>
+        <p class="text-slate-300 text-xs sm:text-sm max-w-2xl">
+          {relevantTool.tagline} Use our verified interactive tool to calculate fees, analyze encumbrances, or triage your specific contract requirements.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a href={relevantTool.url} class="btn-gold text-xs px-6 py-3">
+            Open {relevantTool.name} →
+          </a>
+          <a href="/order" class="btn-outline text-xs px-6 py-3 bg-white/10 hover:bg-white/20 text-white border-white/30">
+            Open Title Order / Upload Contract
+          </a>
+        </div>
+      </section>
+
+      <!-- Section 5: Step-by-Step Practical Checklist -->
+      <section class="space-y-4">
+        <h2 id="practical-closing-checklist" class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+          Step-by-Step Title Due Diligence & Closing Checklist
+        </h2>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse rounded-2xl overflow-hidden border border-slate-200">
+            <thead>
+              <tr class="bg-navy-900 text-white">
+                <th class="p-3.5 font-bold uppercase">Phase</th>
+                <th class="p-3.5 font-bold uppercase">Required Action</th>
+                <th class="p-3.5 font-bold uppercase">Governing Texas Authority</th>
+                <th class="p-3.5 font-bold uppercase">Responsible Party</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 bg-white text-slate-700">
+              <tr>
+                <td class="p-3.5 font-bold text-navy-900">1. Intake</td>
+                <td class="p-3.5">Submit executed contract & receipt earnest money</td>
+                <td class="p-3.5">TREC Form Par 5 & Texas Good Funds</td>
+                <td class="p-3.5">Buyer / Escrow Agent</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3.5 font-bold text-navy-900">2. Title Search</td>
+                <td class="p-3.5">Examine sovereignty tract books & abstract chains</td>
+                <td class="p-3.5">Wise County Title Sovereignty Plant</td>
+                <td class="p-3.5">Title Examiner</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-navy-900">3. Commitment</td>
+                <td class="p-3.5">Issue Schedules A, B, C & D commitment to parties</td>
+                <td class="p-3.5">TDI Promulgated Form Schedule C</td>
+                <td class="p-3.5">Escrow Officer</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="p-3.5 font-bold text-navy-900">4. Curative</td>
+                <td class="p-3.5">Draft deed prep, lien releases, or heirship affidavits</td>
+                <td class="p-3.5">The Berry White Law Firm, PLLC</td>
+                <td class="p-3.5">In-House Attorney / Seller</td>
+              </tr>
+              <tr>
+                <td class="p-3.5 font-bold text-navy-900">5. Closing & Funding</td>
+                <td class="p-3.5">Execute settlement docs, disburse wires & e-record deeds</td>
+                <td class="p-3.5">Wise County Clerk Official Records</td>
+                <td class="p-3.5">Escrow Officer & Parties</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Final Authority Callout -->
+      <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950 space-y-2">
+        <div class="font-bold text-sm text-navy-950">
+          Need Guidance on a Pending North Texas Transaction?
+        </div>
+        <p class="leading-relaxed">
+          Contact the closing specialists at Wise County Title Company in Decatur at <strong>(940) 627-3581</strong> or Bridgeport at <strong>(940) 683-3581</strong>. For custom legal drafting, deed preparation, or probate curative title resolution, connect directly with <a href="/services/curative-legal-counsel" class="font-bold text-navy-950 underline">The Berry White Law Firm, PLLC</a>.
+        </p>
+      </div>
+
+    </div>
+  )}
+</ArticleLayout>

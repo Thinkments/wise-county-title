@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/common/Breadcrumbs.astro';
+import { KNOWLEDGE_PILLARS, MASTER_300_TOPICS } from '../../../lib/knowledge-taxonomy';
+import { BookOpen, ArrowRight, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+
+export function getStaticPaths() {
+  return KNOWLEDGE_PILLARS.map((pillar) => ({
+    params: { pillar: pillar.slug },
+    props: { pillar },
+  }));
+}
+
+const { pillar } = Astro.props;
+const pillarTopics = MASTER_300_TOPICS.filter((t) => t.pillar === pillar.id);
+
+const breadcrumbItems = [
+  { name: 'Knowledge Hub', url: '/knowledge-hub' },
+  { name: pillar.name, url: `/knowledge-hub/${pillar.slug}` },
+];
+---
+
+<BaseLayout
+  title={`${pillar.name} | Wise County Title Research Library`}
+  description={pillar.description}
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <!-- Pillar Hero -->
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="text-3xl">{pillar.icon}</span>
+        <span class="badge-gold">Pillar Knowledge Hub • {pillar.pageCount} Pages</span>
+      </div>
+
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        {pillar.name}
+      </h1>
+
+      <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+        {pillar.description}
+      </p>
+
+      <div class="flex flex-wrap gap-2 pt-2">
+        {pillar.subClusters.map((sc) => (
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-navy-800 border border-navy-700 text-slate-300">
+            <CheckCircle2 className="w-3.5 h-3.5 text-gold-400" />
+            <span>{sc}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Grid -->
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="border-b border-slate-200 pb-4">
+        <span class="badge-gold">Curated Research Guides</span>
+        <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl mt-1">
+          Explore All Guides in {pillar.name}
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {pillarTopics.map((topic) => (
+          <a 
+            href={`/knowledge-hub/${topic.pillar}/${topic.slug}`}
+            class="card-premium flex flex-col justify-between space-y-4 hover:border-navy-900 group"
+          >
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="font-bold text-gold-600 uppercase tracking-wider">{topic.subCluster}</span>
+                <span class="text-slate-400 capitalize">{topic.assetClass.replace('-', ' ')}</span>
+              </div>
+              <h3 class="font-serif font-bold text-navy-950 text-base group-hover:text-gold-700 transition-colors">
+                {topic.title}
+              </h3>
+              <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                {topic.summary}
+              </p>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-navy-900 group-hover:text-gold-600">
+              <span>Read Guide</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

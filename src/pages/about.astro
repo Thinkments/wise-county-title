@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import { Award, BookOpen, ShieldCheck, Scale, CheckCircle2, Users, Star, Clock } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'About Us', url: '/about' },
+];
+
+const LEADERSHIP_PROFILES = [
+  {
+    name: 'Ken R. Dodson',
+    role: 'President & Sovereignty Plant Supervisor',
+    bio: 'Decades of seasoned Texas title examination leadership. Oversees the sovereignty title plant and commercial underwriting operations in Decatur.',
+  },
+  {
+    name: 'Herman "Berry" White IV, J.D.',
+    role: 'Vice President & Real Estate Legal Counsel',
+    bio: 'Licensed Texas Attorney (State Bar #24060820) and Principal of The Berry White Law Firm, PLLC. Specializes in curative title, deed preparation, and probate.',
+  },
+  {
+    name: 'Debbie Remmele Leatherman',
+    role: 'Vice President & Closing Department Manager',
+    bio: 'Supervises residential and commercial closing operations, TRID compliance, and escrow officer staffing across Decatur and Bridgeport.',
+  },
+  {
+    name: 'Vicki Conquest-Niblett',
+    role: 'Vice President, Secretary & Policy Supervisor',
+    bio: 'Manages title policy issuance, Texas Department of Insurance statutory audits, and underwriter relations.',
+  },
+];
+---
+
+<BaseLayout
+  title="About Wise County Title Company | Continuous Operation in Texas Since 1878"
+  description="Learn about Wise County Title Company's 148-year heritage, our sovereignty title plant, our executive leadership, and six national underwriters."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="badge-gold">Continuous Operation Since 1878</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        148 Years of Trusted Land Title in Texas
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        "The Wise Choice" for generations of Texas homeowners, ranchers, commercial developers, and real estate professionals.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- Core Heritage Story -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 space-y-5">
+          <span class="badge-gold">Our Heritage & Mission</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+            Protecting Property Ownership with Unmatched Accuracy
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Established in 1878 in Decatur, Texas, Wise County Title Company has maintained continuous, uninterrupted title and escrow operations for over a century and a half. Through economic booms, the rise of the Barnett Shale, and the rapid expansion of North Texas, our commitment has never wavered: <strong class="text-navy-950">closing fast is secondary to closing correctly</strong>.
+          </p>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            We operate the only private, fully indexed sovereignty title plant in Wise County open to the public. Backed by six national title insurance underwriters, we offer institutional underwriting capacity combined with the personal warmth of a multigenerational hometown business.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 bg-navy-900 text-white p-8 rounded-3xl border border-gold-500/30 space-y-4 shadow-xl text-xs">
+          <div class="font-serif font-bold text-white text-xl">The Wise Title Difference</div>
+          <ul class="space-y-3 text-slate-300">
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Over 150 years of collective title and escrow experience on staff.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Two full-service closing locations in Decatur and Bridgeport.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Co-located in-house legal counsel at The Berry White Law Firm, PLLC.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>ALTA Best Practices Pillar 1–7 verified compliance.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Leadership Team Grid -->
+      <div class="space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <span class="badge-gold">Executive Leadership</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+            Meet the Officers of Wise County Title
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {LEADERSHIP_PROFILES.map((leader) => (
+            <div class="card-premium space-y-3 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="w-12 h-12 rounded-xl bg-navy-900 text-gold-400 font-serif font-bold text-xl flex items-center justify-center">
+                  {leader.name.charAt(0)}
+                </div>
+                <h3 class="font-serif font-bold text-navy-950 text-base">{leader.name}</h3>
+                <div class="text-[11px] font-bold text-gold-600 uppercase">{leader.role}</div>
+                <p class="text-xs text-slate-600 leading-relaxed">{leader.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Underwriter Backing -->
+      <div class="p-8 bg-slate-100 rounded-3xl border border-slate-200 text-center space-y-4">
+        <div class="text-xs font-bold uppercase tracking-wider text-slate-500">National Underwriting Strength</div>
+        <h3 class="font-serif font-bold text-navy-950 text-xl sm:text-2xl">
+          Backed by 6 of America's Largest Title Insurers
+        </h3>
+        <p class="text-xs text-slate-600 max-w-xl mx-auto">
+          First American Title • Fidelity National Title • Stewart Title Guaranty • Old Republic National Title • Chicago Title • Commonwealth Land Title
+        </p>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

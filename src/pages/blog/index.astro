@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { Calendar, User, ArrowRight, BookOpen, Sparkles } from 'lucide-react';
+
+const blogPosts = await getCollection('blog');
+blogPosts.sort((a, b) => new Date(b.data.publishDate).getTime() - new Date(a.data.publishDate).getTime());
+
+const breadcrumbItems = [
+  { name: 'Articles & Archive', url: '/blog' },
+];
+---
+
+<BaseLayout
+  title="Real Estate Articles & Historical Archive | Wise County Title Company"
+  description="Archived real estate, escrow, and title insurance articles written by the Wise County Title closing team."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-12 sm:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/40">
+        <BookOpen className="w-3.5 h-3.5" />
+        <span>Educational Archive</span>
+      </div>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Wise County Title Articles & Guidance
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Explore our library of archived educational articles, closing guides, and title industry updates.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {blogPosts.map((post) => (
+          <a 
+            href={`/blog/${post.slug}`}
+            class="card-premium flex flex-col justify-between space-y-4 hover:border-navy-900 group"
+          >
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-[11px] text-slate-500">
+                <span class="inline-flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-gold-600" />
+                  {post.data.publishDate}
+                </span>
+                <span class="font-semibold text-navy-900 bg-navy-50 px-2 py-0.5 rounded">
+                  {post.data.parentPillarName}
+                </span>
+              </div>
+
+              <h2 class="font-serif font-bold text-navy-950 text-lg group-hover:text-gold-700 transition-colors leading-snug">
+                {post.data.title}
+              </h2>
+
+              <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">
+                {post.data.description}
+              </p>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-navy-900 group-hover:text-gold-600">
+              <span>Read Full Post</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

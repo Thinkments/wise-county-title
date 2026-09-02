@@ -1,0 +1,125 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import TdiRateCalculator from '../../components/interactive-suite/calculators/TdiRateCalculator';
+import { calculateBasicTdiPremium, calculateTexasTitleQuote } from '../../lib/tdi-rates';
+import { formatCurrency } from '../../lib/utils';
+
+const sampleTiers = [
+  100000, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000,
+  600000, 700000, 800000, 900000, 1000000, 1500000, 2000000
+];
+
+const staticTierData = sampleTiers.map((amount) => {
+  const quote = calculateTexasTitleQuote(amount, amount * 0.8, { includeT19: true, includeT38: true });
+  return {
+    amount,
+    ownerPremium: quote.ownersPolicyPremium,
+    lenderSimultaneous: quote.lendersPolicyPremium,
+    endorsements: quote.endorsementsTotal,
+    savings: quote.simultaneousIssueSavings,
+  };
+});
+
+const faqs = [
+  {
+    question: 'How are title insurance rates determined in Texas?',
+    answer: 'Title insurance rates in Texas are strictly promulgated and regulated by the Texas Department of Insurance (TDI) under Basic Manual Rule R-1. All title insurance agencies in Texas are legally mandated to charge identical rates for title policies.',
+  },
+  {
+    question: 'What is the Simultaneous Issue Discount?',
+    answer: 'Under TDI Rule R-5, when an Owner Policy and a Lender Policy are purchased at the same closing on the same property, the Lender Policy is discounted to a flat $100 fee for loan amounts up to the purchase price.',
+  },
+  {
+    question: 'What is Texas Form T-38 Area and Boundary Coverage?',
+    answer: 'Form T-38 amends the standard title policy exception regarding survey matters (shortages in area, boundary overlaps, encroachments) to provide affirmative protection against survey defects based on an acceptable current survey.',
+  },
+  {
+    question: 'Are Texas title insurance premiums paid annually or once?',
+    answer: 'Texas title insurance premiums are a one-time charge paid at closing. The Owner’s Title Policy remains in full force for as long as you or your heirs own the property, with no recurring renewal fees.',
+  },
+];
+---
+
+<ToolLayout
+  title="Texas TDI Title Insurance Rate & Endorsement Calculator (2026 Table)"
+  description="Calculate exact Texas Department of Insurance (TDI) promulgated basic title insurance premiums, simultaneous issue savings, and endorsements under Rule R-1."
+  toolName="Texas TDI Rate Calculator"
+  faqs={faqs}
+>
+  <TdiRateCalculator client:load />
+
+  <!-- Educational Explainer Section below tool for SEO -->
+  <div class="mt-12 bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-sm space-y-8">
+    
+    <div>
+      <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl">
+        Texas Department of Insurance (TDI) Promulgated Title Rate Table
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mt-2">
+        In Texas, title insurance rates are set by the Texas Commissioner of Insurance pursuant to <strong>Texas Insurance Code Chapter 2703</strong> and <strong>Basic Manual Rule R-1</strong>. Unlike other states where title agencies set custom pricing, every title company in Texas charges the exact same promulgated premium.
+      </p>
+    </div>
+
+    <!-- Statutory Rate Formulas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+        <div class="font-bold text-navy-900 text-xs uppercase tracking-wider">Tier 1: $10k – $100k</div>
+        <div class="text-xs text-slate-600 font-medium">Base $328 at $10,000 + $5.27 per $1,000 or fraction thereof over $10,000.</div>
+      </div>
+      <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+        <div class="font-bold text-navy-900 text-xs uppercase tracking-wider">Tier 2: $100k – $1M</div>
+        <div class="text-xs text-slate-600 font-medium">Base $802 at $100,000 + $4.33 per $1,000 or fraction thereof over $100,000.</div>
+      </div>
+      <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200 space-y-1.5">
+        <div class="font-bold text-navy-900 text-xs uppercase tracking-wider">Tier 3: $1M – $5M</div>
+        <div class="text-xs text-slate-600 font-medium">Base $4,699 at $1,000,000 + $3.57 per $1,000 or fraction thereof over $1,000,000.</div>
+      </div>
+    </div>
+
+    <!-- Static Rate Tier Fallback Table for Search Spiders & Users -->
+    <div class="space-y-3">
+      <h3 class="font-serif font-bold text-navy-900 text-lg sm:text-xl">
+        Standard Texas Title Insurance Rate Schedule (Rule R-1 & R-5)
+      </h3>
+      <p class="text-xs text-slate-500">
+        The table below reflects promulgated Basic Manual rates, the $100 simultaneous issue discount, and standard endorsements.
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse rounded-2xl overflow-hidden border border-slate-200">
+          <thead>
+            <tr class="bg-navy-900 text-white">
+              <th class="p-3.5 font-bold uppercase">Purchase Price</th>
+              <th class="p-3.5 font-bold uppercase">Owner's Policy (R-1)</th>
+              <th class="p-3.5 font-bold uppercase">Lender's Policy (R-5)</th>
+              <th class="p-3.5 font-bold uppercase">Est. Endorsements (T19/T38)</th>
+              <th class="p-3.5 font-bold uppercase text-emerald-300">Simultaneous Savings</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 bg-white text-slate-800">
+            {staticTierData.map((tier, idx) => (
+              <tr class={idx % 2 === 1 ? 'bg-slate-50' : 'bg-white'}>
+                <td class="p-3.5 font-bold text-navy-950 font-mono">{formatCurrency(tier.amount)}</td>
+                <td class="p-3.5 font-semibold text-slate-900 font-mono">{formatCurrency(tier.ownerPremium)}</td>
+                <td class="p-3.5 font-semibold text-slate-900 font-mono">{formatCurrency(tier.lenderSimultaneous)}</td>
+                <td class="p-3.5 text-slate-600 font-mono">{formatCurrency(tier.endorsements)}</td>
+                <td class="p-3.5 font-bold text-emerald-700 font-mono">+{formatCurrency(tier.savings)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Legal & Closing Advisory -->
+    <div class="p-5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-950 space-y-2">
+      <div class="font-bold text-sm text-navy-950">
+        Ready to Open Your Title Order or Have Rate Questions?
+      </div>
+      <p class="leading-relaxed">
+        Contact our policy examiners at Wise County Title Company in Decatur at <strong>(940) 627-3581</strong> or Bridgeport at <strong>(940) 683-3581</strong>. Real estate agents and brokers can upload purchase agreements directly to our <a href="/order" class="font-bold text-navy-950 underline">1-Click Contract Drop Portal</a> for immediate file opening.
+      </p>
+    </div>
+
+  </div>
+</ToolLayout>

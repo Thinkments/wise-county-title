@@ -1,0 +1,411 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TdiRateCalculator from '../components/interactive-suite/calculators/TdiRateCalculator';
+import ClosingSuiteSelector from '../components/interactive-suite/scheduling/ClosingSuiteSelector';
+import { 
+  Building2, 
+  Calculator, 
+  MapPin, 
+  FileText, 
+  Compass, 
+  ShieldCheck, 
+  Sparkles, 
+  BookOpen, 
+  Scale, 
+  ArrowRight, 
+  Star, 
+  Award, 
+  Clock, 
+  PhoneCall, 
+  CheckCircle2, 
+  Users, 
+  TrendingUp,
+  ExternalLink
+} from 'lucide-react';
+---
+
+<BaseLayout
+  title="Wise County Title Company | Continuous Operation Since 1878 | Decatur & Bridgeport, TX"
+  description="Wise County's trusted title insurance and escrow settlement partner for 148 years. Owner of the only private sovereignty title plant in Wise County. Decatur & Bridgeport closing suites."
+>
+  
+  <!-- HERO SECTION -->
+  <section class="relative bg-gradient-to-b from-navy-950 via-navy-900 to-navy-900 text-white pt-12 pb-20 sm:pt-16 sm:pb-28 overflow-hidden">
+    <!-- Ambient gold/navy background glow -->
+    <div class="absolute top-1/4 -left-32 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 -right-32 w-96 h-96 bg-navy-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Heritage Pill Banner -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/40 mb-6 shadow-sm">
+        <Award className="w-4 h-4 text-gold-400" />
+        <span>Continuous Operation in Texas Since 1878 • 148 Years of Land Title Protection</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-7 space-y-6">
+          <h1 class="font-serif font-bold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-[1.1]">
+            The Wise Choice for <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-400 to-gold-500">Real Estate Closings</span> in North Texas.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+            Where 148 years of sovereignty title plant heritage meets friction-free closing technology for realtors, lenders, homeowners, and agricultural investors.
+          </p>
+
+          <!-- Core Call to Actions -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+            <a href="/order" class="btn-gold text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-gold-glow">
+              <FileText className="w-4 h-4" />
+              <span>1-Click AI Contract Drop</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+
+            <a href="/tools/tdi-rate-calculator" class="btn-outline text-sm text-navy-950 flex items-center justify-center gap-2">
+              <Calculator className="w-4 h-4 text-gold-600" />
+              <span>TDI Title Rate Calculator</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges Row -->
+          <div class="pt-6 border-t border-navy-800/80 flex flex-wrap items-center gap-6 text-xs text-slate-300">
+            <div class="flex items-center gap-2">
+              <div class="flex text-gold-400">
+                <Star className="w-4 h-4 fill-gold-400" />
+                <Star className="w-4 h-4 fill-gold-400" />
+                <Star className="w-4 h-4 fill-gold-400" />
+                <Star className="w-4 h-4 fill-gold-400" />
+                <Star className="w-4 h-4 fill-gold-400" />
+              </div>
+              <span class="font-semibold text-white">4.9★ Rating</span>
+              <span class="text-slate-400">(217+ Reviews)</span>
+            </div>
+
+            <span class="text-navy-700 hidden sm:inline">•</span>
+
+            <div class="flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <span>6 National Underwriters</span>
+            </div>
+
+            <span class="text-navy-700 hidden sm:inline">•</span>
+
+            <div class="flex items-center gap-1.5">
+              <BookOpen className="w-4 h-4 text-gold-400" />
+              <span>Only Sovereignty Plant in Wise Co.</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Quick Tools Card -->
+        <div class="lg:col-span-5 bg-white/10 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/20 shadow-2xl text-white space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10">
+            <span class="font-serif font-bold text-lg text-white">Instant Settlement Utilities</span>
+            <span class="text-[11px] uppercase font-bold text-gold-400 tracking-wider">Fast Access</span>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <a href="/tools/tdi-rate-calculator" class="flex items-start gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-colors group">
+              <div class="p-2 rounded-xl bg-gold-500/20 text-gold-400 group-hover:scale-105 transition-transform">
+                <Calculator className="w-5 h-5" />
+              </div>
+              <div>
+                <div class="font-bold text-white text-sm">Texas TDI Rate Calculator</div>
+                <div class="text-slate-300">Exact promulgated basic premium & endorsements</div>
+              </div>
+            </a>
+
+            <a href="/tools/t47-affidavit-wizard" class="flex items-start gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-colors group">
+              <div class="p-2 rounded-xl bg-gold-500/20 text-gold-400 group-hover:scale-105 transition-transform">
+                <FileText className="w-5 h-5" />
+              </div>
+              <div>
+                <div class="font-bold text-white text-sm">T-47 Affidavit Generator</div>
+                <div class="text-slate-300">Interactive seller survey modification questionnaire</div>
+              </div>
+            </a>
+
+            <a href="/tools/property-due-diligence-map" class="flex items-start gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-colors group">
+              <div class="p-2 rounded-xl bg-gold-500/20 text-gold-400 group-hover:scale-105 transition-transform">
+                <Compass className="w-5 h-5" />
+              </div>
+              <div>
+                <div class="font-bold text-white text-sm">North Texas GIS Map</div>
+                <div class="text-slate-300">RRC gas wells, MUD/PIDs & FEMA floodplains</div>
+              </div>
+            </a>
+
+            <a href="/tools/deal-doctor" class="flex items-start gap-3 p-3 rounded-2xl bg-white/5 hover:bg-white/15 border border-white/10 transition-colors group">
+              <div class="p-2 rounded-xl bg-gold-500/20 text-gold-400 group-hover:scale-105 transition-transform">
+                <Scale className="w-5 h-5" />
+              </div>
+              <div>
+                <div class="font-bold text-white text-sm">Deal Doctor Legal Triage</div>
+                <div class="text-slate-300">In-house attorney roadmap from Berry White Law</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="pt-2">
+            <a href="/knowledge-hub" class="text-xs text-gold-400 hover:text-gold-300 font-semibold flex items-center justify-between p-2 rounded-xl bg-navy-950/60 border border-gold-500/30">
+              <span>Explore 300-Page Research Knowledge Hub</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- AUDIENCE SEGMENTED PATHWAYS -->
+  <section class="py-16 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="badge-gold">Tailored Escrow Solutions</span>
+        <h2 class="font-serif font-bold text-navy-950 text-3xl sm:text-4xl">
+          Engineered for Every Real Estate Stakeholder
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          Whether you are closing your first home, listing acreage, underwriting mortgage loans, or platting a subdivision.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Realtors -->
+        <div class="card-premium flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center">
+              <Users className="w-6 h-6 text-gold-600" />
+            </div>
+            <h3 class="font-serif font-bold text-xl text-navy-950">Real Estate Agents</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              1-Click Contract Drop, Seller Net Sheets, T-47 affidavit generators, and direct closer access to keep deals closing on schedule.
+            </p>
+          </div>
+          <a href="/knowledge-hub/realtor" class="text-xs font-bold text-navy-900 hover:text-gold-600 flex items-center gap-1">
+            Realtor Pro Hub →
+          </a>
+        </div>
+
+        <!-- Lenders -->
+        <div class="card-premium flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-gold-600" />
+            </div>
+            <h3 class="font-serif font-bold text-xl text-navy-950">Lenders & Loan Officers</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              TRID-compliant fee quotes, rapid Closing Protection Letters (CPL), simultaneous issue discounts, and wire verification.
+            </p>
+          </div>
+          <a href="/tools/tdi-rate-calculator" class="text-xs font-bold text-navy-900 hover:text-gold-600 flex items-center gap-1">
+            TDI Fee Estimator →
+          </a>
+        </div>
+
+        <!-- Homeowners -->
+        <div class="card-premium flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center">
+              <Sparkles className="w-6 h-6 text-gold-600" />
+            </div>
+            <h3 class="font-serif font-bold text-xl text-navy-950">Buyers & Sellers</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Plain-English closing roadmaps, wire fraud defense, Texas homestead exemption filing assistants, and celebratory closing suites.
+            </p>
+          </div>
+          <a href="/knowledge-hub/homeowner" class="text-xs font-bold text-navy-900 hover:text-gold-600 flex items-center gap-1">
+            Homeowner Roadmap →
+          </a>
+        </div>
+
+        <!-- Farm, Ranch & Commercial -->
+        <div class="card-premium flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-navy-50 text-navy-900 border border-navy-100 flex items-center justify-center">
+              <Compass className="w-6 h-6 text-gold-600" />
+            </div>
+            <h3 class="font-serif font-bold text-xl text-navy-950">Ag, Land & Commercial</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              1-d-1 Ag tax valuations, rollback tax calculators, severed mineral rights, ALTA endorsements, and sovereignty title plant searches.
+            </p>
+          </div>
+          <a href="/knowledge-hub/ag-ranch" class="text-xs font-bold text-navy-900 hover:text-gold-600 flex items-center gap-1">
+            Ranch & Commercial Hub →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOVEREIGNTY TITLE PLANT FEATURE -->
+  <section class="py-16 sm:py-20 bg-navy-950 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <span class="badge-gold">Unrivaled Historical Authority</span>
+          <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            The Only Sovereignty Title Plant in Wise County, Texas.
+          </h2>
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            While modern title companies rely on fragmented online public indices, Wise County Title Company owns and operates the <strong class="text-white">only private, fully indexed sovereignty title plant open to the public</strong> in Wise County.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-navy-900/80 border border-navy-800 space-y-1">
+              <div class="font-bold text-gold-400 text-sm">Republic of Texas Patents</div>
+              <p class="text-slate-300">Complete historical tract books dating from the early 1900s and original sovereign land grants.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-navy-900/80 border border-navy-800 space-y-1">
+              <div class="font-bold text-gold-400 text-sm">150+ Years Combined Staff</div>
+              <p class="text-slate-300">Experienced in-house title examiners identifying clouds and unreleased liens on site.</p>
+            </div>
+          </div>
+
+          <div class="pt-2">
+            <a href="/services/public-title-plant" class="btn-gold text-xs">
+              Learn About Title Plant Access & Hours →
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-gradient-to-br from-navy-900 to-navy-800 p-8 rounded-3xl border border-gold-500/30 space-y-6 shadow-2xl">
+          <div class="font-serif font-bold text-xl text-white">Title Plant Quick Facts</div>
+          <ul class="space-y-3 text-xs text-slate-300">
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Fully indexed card systems through 1997 + modern computerized database to present day.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Public access available for landmen, attorneys, surveyors, and independent title researchers.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+              <span>Backed by 6 national title insurance underwriters for multi-million dollar commercial capacity.</span>
+            </li>
+          </ul>
+
+          <div class="p-4 bg-navy-950 rounded-2xl border border-navy-800 text-xs">
+            <div class="font-bold text-gold-400">Decatur Title Plant Hours:</div>
+            <p class="text-slate-400 mt-1">Monday – Friday: 8:00 AM – 12:00 PM & 1:00 PM – 5:00 PM</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INTERACTIVE TDI CALCULATOR SECTION -->
+  <section class="py-16 sm:py-24 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="badge-gold">Live Financial Tool</span>
+        <h2 class="font-serif font-bold text-navy-950 text-3xl sm:text-4xl">
+          Texas Promulgated Title Rate Calculator
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          Compute basic premiums, simultaneous issue savings, and statutory endorsements in real time.
+        </p>
+      </div>
+
+      <!-- React Island: TdiRateCalculator -->
+      <TdiRateCalculator client:load />
+
+    </div>
+  </section>
+
+  <!-- CLOSING SUITE HOSPITALITY SECTION -->
+  <section class="py-16 sm:py-20 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="badge-gold">The Closing Hospitality Experience</span>
+        <h2 class="font-serif font-bold text-navy-950 text-3xl sm:text-4xl">
+          More Than Just Signing Documents
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600">
+          At Wise County Title Company, we believe closing day is a life milestone that deserves celebration, comfort, and white-glove hospitality.
+        </p>
+      </div>
+
+      <!-- React Island: ClosingSuiteSelector -->
+      <ClosingSuiteSelector client:visible />
+
+    </div>
+  </section>
+
+  <!-- LEGAL CURATIVE PARTNERSHIP SECTION (THE BERRY WHITE LAW FIRM) -->
+  <section class="py-16 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-gradient-to-br from-navy-900 via-navy-900 to-navy-950 text-white rounded-3xl p-8 sm:p-12 border border-gold-500/40 shadow-2xl relative overflow-hidden">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-8 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold-500/20 text-gold-400 border border-gold-500/40">
+              <Scale className="w-3.5 h-3.5" />
+              Strategic In-House Legal Partnership
+            </div>
+
+            <h2 class="font-serif font-bold text-3xl sm:text-4xl text-white">
+              Zero Closing Delays with In-House Real Estate Legal Counsel
+            </h2>
+
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              When title searches uncover heirship defects, unreleased mortgages, boundary overlaps, or estate probate requirements, outside title companies must send clients away to private law firms.
+            </p>
+
+            <p class="text-sm text-slate-300 leading-relaxed">
+              At Wise County Title, our partner <strong class="text-white">The Berry White Law Firm, PLLC</strong> (co-located at our Bridgeport office) handles deed drafting, Lady Bird deeds, and curative title resolution directly on site.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4 pt-2">
+              <a href="/services/curative-legal-counsel" class="btn-gold text-xs">
+                Explore Curative Legal Services →
+              </a>
+              <a 
+                href="https://www.hbwhitelaw.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-outline text-xs text-navy-950 bg-white"
+              >
+                Visit HBWhiteLaw.com <ExternalLink className="w-3.5 h-3.5 ml-1" />
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-4 bg-navy-800/80 p-6 rounded-2xl border border-navy-700 space-y-4 text-xs">
+            <div class="font-bold text-gold-400 text-sm uppercase tracking-wider">Herman Berry White IV, J.D.</div>
+            <p class="text-slate-300">
+              Vice President & Legal Counsel at Wise County Title Company. Principal Attorney at The Berry White Law Firm, PLLC (Texas Bar #24060820).
+            </p>
+            <div class="pt-2 border-t border-navy-700 space-y-1.5 text-[11px] text-slate-400">
+              <div>📍 1602 Halsell St, Bridgeport, TX 76426</div>
+              <div>📞 (940) 647-0000</div>
+              <div>✉️ white@hbwhitelaw.com</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</BaseLayout>

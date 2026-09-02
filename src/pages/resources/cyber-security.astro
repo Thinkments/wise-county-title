@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { ShieldAlert, PhoneCall, CheckCircle2, AlertTriangle, Lock, ShieldCheck } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Resources', url: '/resources' },
+  { name: 'Wire Fraud & Cyber Security', url: '/resources/cyber-security' },
+];
+---
+
+<BaseLayout
+  title="Wire Fraud Safety Center & Cyber Security | Wise County Title"
+  description="Critical wire fraud prevention protocols, verbal phone verification steps, and ALTA Best Practices security standards at Wise County Title Company."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-navy-950 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-red-500/20 text-red-400 border border-red-500/40">
+        <ShieldAlert className="w-3.5 h-3.5" />
+        <span>Mandatory Consumer Security Warning</span>
+      </div>
+
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Wire Fraud Prevention & Cyber Defense
+      </h1>
+
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Real estate wire fraud is an aggressive cyber threat. Learn our strict communication protocols before sending any transaction funds.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      
+      <!-- Primary Warning Box -->
+      <div class="p-6 sm:p-8 bg-red-50 border-2 border-red-300 rounded-3xl space-y-4">
+        <div class="flex items-center gap-3 text-red-900 font-serif font-bold text-xl">
+          <ShieldAlert className="w-6 h-6 text-red-600 shrink-0" />
+          <span>Our Strict Wire Communication Policy</span>
+        </div>
+        <p class="text-xs sm:text-sm text-red-950 leading-relaxed font-medium">
+          Wise County Title Company will <strong class="underline">NEVER</strong> send or modify wiring instructions via email. If you receive an email claiming our bank accounts have changed or demanding urgent wire transmission, it is fraudulent.
+        </p>
+      </div>
+
+      <!-- 3 Steps to Verify -->
+      <div class="card-premium space-y-6">
+        <h2 class="font-serif font-bold text-navy-950 text-2xl">
+          Mandatory 3-Step Wire Verification Protocol
+        </h2>
+
+        <div class="space-y-4 text-xs sm:text-sm text-slate-700">
+          <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="w-6 h-6 rounded-full bg-navy-900 text-white font-bold text-xs flex items-center justify-center shrink-0">1</span>
+            <div>
+              <strong class="text-navy-950 block text-sm">Call Our Verified Office Phone Number</strong>
+              <span>Never call phone numbers printed in an email. Use our official directory numbers: Decatur: <strong>(940) 627-3581</strong> or Bridgeport: <strong>(940) 683-3581</strong>.</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="w-6 h-6 rounded-full bg-navy-900 text-white font-bold text-xs flex items-center justify-center shrink-0">2</span>
+            <div>
+              <strong class="text-navy-950 block text-sm">Read Back the Routing and Account Numbers</strong>
+              <span>Verbally read back the routing number and account number digit-by-digit with your dedicated closer before authorizing your bank wire.</span>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-200">
+            <span class="w-6 h-6 rounded-full bg-navy-900 text-white font-bold text-xs flex items-center justify-center shrink-0">3</span>
+            <div>
+              <strong class="text-navy-950 block text-sm">Confirm Receipt with Your Escrow Officer</strong>
+              <span>Notify your closer immediately after your bank confirms wire transmission so we can verify incoming credits in real time.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

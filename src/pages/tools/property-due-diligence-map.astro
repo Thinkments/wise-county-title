@@ -1,0 +1,12 @@
+---
+import ToolLayout from '../../layouts/ToolLayout.astro';
+import DueDiligenceMap from '../../components/interactive-suite/maps/DueDiligenceMap';
+---
+
+<ToolLayout
+  title="North Texas & Wise County Due Diligence GIS Map | Wise County Title"
+  description="Interactive GIS map overlaying Barnett Shale RRC oil and gas wells, MUD and PID taxing boundaries, FEMA floodplains, and Wise CAD parcel records."
+  toolName="North Texas GIS Map"
+>
+  <DueDiligenceMap client:only="react" />
+</ToolLayout>

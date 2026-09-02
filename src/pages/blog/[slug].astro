@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import LegalReviewBadge from '../../components/content/LegalReviewBadge.astro';
+import ContextualCta from '../../components/content/ContextualCta.astro';
+import { Calendar, User, ArrowLeft, ArrowRight, BookOpen, ShieldCheck } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const breadcrumbItems = [
+  { name: 'Articles & Archive', url: '/blog' },
+  { name: post.data.title, url: `/blog/${post.slug}` },
+];
+---
+
+<BaseLayout
+  title={`${post.data.title} | Wise County Title Articles`}
+  description={post.data.description}
+  pageType="article"
+  datePublished={post.data.publishDate}
+  authorName={post.data.author}
+  reviewedByName={post.data.reviewedBy}
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
+    
+    <header class="space-y-4 border-b border-slate-200 pb-8">
+      <div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+        <a href={`/knowledge-hub/${post.data.parentPillarSlug}`} class="badge-gold">
+          Part of {post.data.parentPillarName}
+        </a>
+        <span class="text-slate-300">•</span>
+        <span class="text-slate-500">Published {post.data.publishDate}</span>
+      </div>
+
+      <h1 class="font-serif font-bold text-navy-950 text-3xl sm:text-5xl leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        {post.data.description}
+      </p>
+
+      <LegalReviewBadge 
+        authorName={post.data.author}
+        reviewedByName={post.data.reviewedBy}
+        verifiedDate="August 2026 Audit"
+      />
+    </header>
+
+    <div class="prose prose-slate prose-lg max-w-none text-slate-800 leading-relaxed space-y-6">
+      <Content />
+    </div>
+
+    <div class="p-6 bg-navy-900 text-white rounded-2xl border border-gold-500/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <div class="text-xs font-bold text-gold-400 uppercase tracking-wider">Expanded Research Guide</div>
+        <div class="font-serif font-bold text-base text-white">Looking for the complete technical guide?</div>
+        <p class="text-xs text-slate-300">This topic is part of our comprehensive 300-page educational knowledge hub.</p>
+      </div>
+      <a href={`/knowledge-hub/${post.data.parentPillarSlug}`} class="btn-gold text-xs shrink-0">
+        Browse {post.data.parentPillarName} →
+      </a>
+    </div>
+
+    <ContextualCta />
+
+  </article>
+</BaseLayout>

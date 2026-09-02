@@ -1,0 +1,17 @@
+{
+  "name": "Wise County Title Company",
+  "short_name": "Wise Title",
+  "description": "Continuous Operation in Texas Since 1878. Settlement calculators, contract intake, and 300-page title knowledge hub.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B2545",
+  "theme_color": "#0B2545",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

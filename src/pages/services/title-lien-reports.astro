@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { FileText, Search, ShieldCheck, CheckCircle2 } from 'lucide-react';
+
+const breadcrumbItems = [
+  { name: 'Services', url: '/services' },
+  { name: 'Title & Lien Reports', url: '/services/title-lien-reports' },
+];
+---
+
+<BaseLayout
+  title="Title & Lien Searches (O&E Reports) | Wise County Title"
+  description="Ownership & Encumbrance (O&E) reports, municipal lien searches, judgment searches, and chain of title verifications in Wise County, TX."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+      <span class="badge-gold">Rapid Record Searches</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Title & Lien Reports (O&E Searches)
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+        Verify current legal vesting, identify unreleased deeds of trust, and uncover recorded tax and judgment liens prior to foreclosure bidding or private equity transactions.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <div class="card-premium max-w-3xl mx-auto space-y-4 text-xs sm:text-sm text-slate-700">
+        <h2 class="font-serif font-bold text-navy-950 text-2xl">What is Included in a Title Report?</h2>
+        <p>
+          An Ownership and Encumbrance (O&E) report provides a certified snapshot of public county records without issuing full title insurance policy coverage.
+        </p>
+        <ul class="space-y-2 text-xs text-slate-600">
+          <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Current record fee simple owner</li>
+          <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Active recorded Deeds of Trust & HELOCs</li>
+          <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> County and Municipal Tax Certificates</li>
+          <li class="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Abstract of Judgments & Mechanic's Liens</li>
+        </ul>
+        <div class="pt-4 border-t border-slate-200">
+          <a href="/order" class="btn-gold text-xs">Order a Title & Lien Report →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,159 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import { MapPin, Phone, Mail, Clock, ArrowRight, Building2, Star } from 'lucide-react';
+
+const counties = await getCollection('counties');
+
+const breadcrumbItems = [
+  { name: 'Locations & Counties', url: '/locations' },
+];
+---
+
+<BaseLayout
+  title="Office Locations & North Texas Counties Served | Wise County Title"
+  description="Visit our Decatur Headquarters and Bridgeport Branch closing offices or explore our county authority real estate guides across North Texas."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <section class="bg-gradient-to-b from-navy-950 to-navy-900 text-white py-14 sm:py-20 border-b border-gold-500/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="badge-gold">Physical Closing Suites & Regional Coverage</span>
+      <h1 class="font-serif font-bold text-3xl sm:text-5xl text-white">
+        Wise County Title Offices & Regional Hubs
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Two permanent closing offices in Wise County, plus comprehensive title and escrow closing authority across North Texas.
+      </p>
+    </div>
+  </section>
+
+  <!-- Physical Branches Grid -->
+  <section class="py-14 sm:py-20 bg-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Decatur HQ -->
+        <div class="card-premium space-y-5 border-2 hover:border-gold-500 transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="badge-gold text-[10px]">Headquarters & Sovereignty Plant</span>
+              <h2 class="font-serif font-bold text-navy-950 text-2xl mt-1">Decatur Main Office</h2>
+            </div>
+            <div class="flex items-center gap-1 text-gold-500 text-xs font-bold">
+              <Star className="w-4 h-4 fill-gold-500" />
+              <span>4.9★ (217 Reviews)</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-slate-700">
+            <p class="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
+              <span>405 Park West Court, Decatur, TX 76234</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-gold-600 shrink-0" />
+              <a href="tel:+19406273581" class="font-bold text-navy-900 hover:underline">(940) 627-3581</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-gold-600 shrink-0" />
+              <span>orderdesk@wisetitle.com</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-gold-600 shrink-0" />
+              <span>Monday–Friday: 8:00 AM – 5:00 PM</span>
+            </p>
+          </div>
+
+          <div class="pt-2 flex items-center gap-3">
+            <a href="/locations/decatur-tx" class="btn-gold text-xs">Decatur Office Details →</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Wise+County+Title+Co+Decatur+TX&query_place_id=ChIJDQFBOafRTYYR41NhXrZizco" target="_blank" rel="noopener" class="btn-outline text-xs">Google Maps</a>
+          </div>
+        </div>
+
+        <!-- Bridgeport Branch -->
+        <div class="card-premium space-y-5 border-2 hover:border-gold-500 transition-colors">
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="badge-gold text-[10px]">Closing Branch & H.B. White Law</span>
+              <h2 class="font-serif font-bold text-navy-950 text-2xl mt-1">Bridgeport Branch Office</h2>
+            </div>
+            <div class="flex items-center gap-1 text-gold-500 text-xs font-bold">
+              <Star className="w-4 h-4 fill-gold-500" />
+              <span>4.9★ (28 Reviews)</span>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-xs text-slate-700">
+            <p class="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
+              <span>1602 Halsell Street, Bridgeport, TX 76426</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-gold-600 shrink-0" />
+              <a href="tel:+19406833581" class="font-bold text-navy-900 hover:underline">(940) 683-3581</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-gold-600 shrink-0" />
+              <span>fastresponse@wisetitle.com</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <Clock className="w-4 h-4 text-gold-600 shrink-0" />
+              <span>Monday–Friday: 8:00 AM – 5:00 PM</span>
+            </p>
+          </div>
+
+          <div class="pt-2 flex items-center gap-3">
+            <a href="/locations/bridgeport-tx" class="btn-gold text-xs">Bridgeport Office Details →</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Wise+County+Title+Co+Bridgeport+TX&query_place_id=ChIJe7psacGKTYYRaltXNwLgaNM" target="_blank" rel="noopener" class="btn-outline text-xs">Google Maps</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Regional County Authority Guides -->
+      <div class="space-y-6 pt-6 border-t border-slate-200">
+        <div>
+          <span class="badge-gold">Regional Authority Hubs</span>
+          <h2 class="font-serif font-bold text-navy-950 text-2xl sm:text-3xl mt-1">
+            North Texas County Closing & Recording Guides
+          </h2>
+          <p class="text-xs text-slate-600 mt-1">
+            Access local appraisal district links, clerk recording fees, and property tax schedules.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {counties.map((c) => (
+            <a 
+              href={`/locations/${c.slug}`}
+              class="p-5 rounded-2xl bg-white border border-slate-200 hover:border-navy-900 shadow-sm hover:shadow-card transition-all group block space-y-2"
+            >
+              <div class="font-serif font-bold text-navy-950 text-lg group-hover:text-gold-600 transition-colors">
+                {c.data.countyName}
+              </div>
+              <div class="text-xs text-slate-500">
+                County Seat: <strong class="text-slate-700">{c.data.countySeat}</strong>
+              </div>
+              <div class="text-[11px] text-slate-600 line-clamp-2">
+                {c.data.cadName}
+              </div>
+              <div class="text-xs font-bold text-gold-600 pt-1 flex items-center gap-1">
+                <span>View County Guide</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

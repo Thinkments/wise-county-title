@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Accessibility Statement', url: '/accessibility' },
+];
+---
+
+<BaseLayout
+  title="Accessibility Statement | Wise County Title Company"
+  description="Our ongoing commitment to digital accessibility, WCAG 2.1 Level AA compliance, and screen-reader friendliness."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6 prose prose-slate">
+    <h1 class="font-serif font-bold text-navy-950 text-3xl sm:text-4xl">Digital Accessibility Statement</h1>
+    <p class="text-xs text-slate-500">Last Updated: August 2026</p>
+
+    <h2>Our Commitment to Accessibility</h2>
+    <p>
+      Wise County Title Company is dedicated to ensuring that digital real estate tools, educational articles, and closing portals are accessible to all individuals, including those with visual, hearing, cognitive, and motor impairments.
+    </p>
+
+    <h2>Standards & Conformance</h2>
+    <p>
+      We strive to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> standards, featuring high-contrast typography, keyboard navigation, clear ARIA labeling, and responsive touch targets.
+    </p>
+
+    <h2>Feedback & Assistance</h2>
+    <p>
+      If you experience any difficulty accessing content on this site, please contact our team at (940) 627-3581 or email orderdesk@wisetitle.com for prompt assistance.
+    </p>
+  </article>
+</BaseLayout>

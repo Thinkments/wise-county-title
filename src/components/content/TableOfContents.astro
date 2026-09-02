@@ -1,0 +1,41 @@
+---
+import { ListTree } from 'lucide-react';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{filteredHeadings.length > 0 && (
+  <nav 
+    class="toc-nav bg-white rounded-2xl border border-slate-200 p-5 shadow-sm mb-8"
+    aria-label="Table of Contents"
+  >
+    <div class="flex items-center gap-2 font-serif font-bold text-navy-900 text-sm mb-3 pb-2 border-b border-slate-100">
+      <ListTree className="w-4 h-4 text-gold-600" />
+      <span>Table of Contents</span>
+    </div>
+
+    <ul class="space-y-1.5 text-xs text-slate-600">
+      {filteredHeadings.map((h) => (
+        <li class={h.depth === 3 ? 'pl-4 border-l-2 border-slate-100 ml-1' : 'font-medium'}>
+          <a 
+            href={`#${h.slug}`} 
+            class="hover:text-navy-900 hover:text-gold-600 hover:underline transition-colors block py-0.5"
+          >
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}

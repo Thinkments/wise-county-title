@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+
+const breadcrumbItems = [
+  { name: 'Privacy Policy', url: '/privacy-policy' },
+];
+---
+
+<BaseLayout
+  title="Privacy Policy | Wise County Title Company"
+  description="Privacy policy and Gramm-Leach-Bliley Act (GLBA) Non-Public Personal Information (NPI) security protocols at Wise County Title Company."
+  breadcrumbs={breadcrumbItems}
+>
+  <div class="bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <Breadcrumbs items={breadcrumbItems} />
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-6 prose prose-slate">
+    <h1 class="font-serif font-bold text-navy-950 text-3xl sm:text-4xl">Privacy Policy & NPI Protection</h1>
+    <p class="text-xs text-slate-500">Effective Date: August 2026</p>
+
+    <h2>1. Commitment to Privacy</h2>
+    <p>
+      Wise County Title Company is committed to safeguarding Non-Public Personal Information (NPI) collected during real estate title examination and escrow settlement. We maintain physical, electronic, and procedural safeguards that comply with federal Gramm-Leach-Bliley Act (GLBA) standards and ALTA Best Practices Pillar 3.
+    </p>
+
+    <h2>2. Information We Collect</h2>
+    <p>
+      In conducting real estate closings, we collect identification credentials, Social Security numbers, mortgage account numbers, loan payoff figures, and banking routing information exclusively for transactional escrow fulfillment.
+    </p>
+
+    <h2>3. Disclosure of Information</h2>
+    <p>
+      We do not sell, rent, or lease consumer personal information. Information is disclosed solely to authorized transaction parties (lenders, surveyors, underwriting insurers, county recording clerks) as necessary to execute closing covenants.
+    </p>
+
+    <h2>4. Inquiries & Contact</h2>
+    <p>
+      For privacy inquiries, contact our compliance officer at (940) 627-3581 or write to 405 Park West Court, Decatur, TX 76234.
+    </p>
+  </article>
+</BaseLayout>

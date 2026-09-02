@@ -1,0 +1,61 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20.17.0"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(self)"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Legacy 301 Redirects from Historical Site Structure
+[[redirects]]
+  from = "/blog/texas-homestead-exemptions"
+  to = "/knowledge-hub/homeowner/texas-homestead-exemptions"
+  status = 301
+
+[[redirects]]
+  from = "/blog/what-is-escrow"
+  to = "/knowledge-hub/homeowner/the-step-by-step-closing-timeline"
+  status = 301
+
+[[redirects]]
+  from = "/blog/buying-land"
+  to = "/knowledge-hub/ag-ranch/1d1-ag-tax-valuation-guide"
+  status = 301
+
+[[redirects]]
+  from = "/blog/title-insurance"
+  to = "/knowledge-hub/homeowner/owners-policy-vs-lenders-policy"
+  status = 301
+
+[[redirects]]
+  from = "/blog/wire-fraud"
+  to = "/resources/cyber-security"
+  status = 301
+
+[[redirects]]
+  from = "/blog/good-funds"
+  to = "/knowledge-hub/homeowner/funding-approval-vs-signing"
+  status = 301
+
+[[redirects]]
+  from = "/blog/do-you-need-a-survey"
+  to = "/knowledge-hub/realtor/existing-survey-vs-new-survey"
+  status = 301
+
+[[redirects]]
+  from = "/blog/what-are-property-liens"
+  to = "/knowledge-hub/title-clearance/unreleased-mortgages-and-liens"
+  status = 301

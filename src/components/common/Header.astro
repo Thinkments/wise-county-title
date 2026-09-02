@@ -1,0 +1,268 @@
+---
+import WireFraudBanner from './WireFraudBanner.astro';
+import CommandSearchModal from './CommandSearchModal';
+import { 
+
+  Building2, 
+  Calculator, 
+  MapPin, 
+  FileText, 
+  Compass, 
+  ChevronDown, 
+  Menu, 
+  X, 
+  ShieldCheck, 
+  Sparkles,
+  BookOpen,
+  Briefcase
+} from 'lucide-react';
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-200">
+  <WireFraudBanner />
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      
+      <!-- Brand Logo & 1878 Badge -->
+      <a href="/" class="flex items-center gap-3.5 group">
+        <div class="w-12 h-12 rounded-xl bg-navy-900 border border-gold-500/50 flex items-center justify-center shadow-md text-gold-400 font-serif font-bold text-2xl group-hover:scale-105 transition-transform duration-200">
+          W
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif font-bold text-navy-900 text-xl tracking-tight leading-tight group-hover:text-navy-700 transition-colors">
+            WISE COUNTY TITLE
+          </span>
+          <span class="text-[11px] font-semibold text-gold-600 tracking-wider uppercase flex items-center gap-1.5">
+            <span>The Wise Choice</span>
+            <span class="text-slate-300">•</span>
+            <span class="text-slate-500">Est. 1878</span>
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-slate-700" aria-label="Main Navigation">
+        
+        <!-- Services Dropdown -->
+        <div class="relative group">
+          <button class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 inline-flex items-center gap-1 focus:ring-2 focus:ring-gold-500 transition-colors">
+            Services
+            <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform group-hover:rotate-180" />
+          </button>
+          
+          <div class="absolute left-0 top-full mt-1 w-72 rounded-2xl bg-white border border-slate-200 shadow-card-hover p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/services/title-insurance" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <ShieldCheck className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Title Insurance</div>
+                <div class="text-xs text-slate-500">TDI promulgated policies & endorsements</div>
+              </div>
+            </a>
+            <a href="/services/closings-escrow" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Building2 className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Closings & Escrow</div>
+                <div class="text-xs text-slate-500">Residential, commercial, and RON</div>
+              </div>
+            </a>
+            <a href="/services/public-title-plant" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <BookOpen className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Sovereignty Title Plant</div>
+                <div class="text-xs text-slate-500">Only private public-access plant in Wise Co.</div>
+              </div>
+            </a>
+            <a href="/services/curative-legal-counsel" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Briefcase className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Curative Legal Counsel</div>
+                <div class="text-xs text-slate-500">In-house with The Berry White Law Firm</div>
+              </div>
+            </a>
+            <a href="/services/title-lien-reports" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <FileText className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Title & Lien Reports</div>
+                <div class="text-xs text-slate-500">O&E searches & ownership chains</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Tools Dropdown -->
+        <div class="relative group">
+          <button class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 inline-flex items-center gap-1 focus:ring-2 focus:ring-gold-500 transition-colors">
+            <Sparkles className="w-4 h-4 text-gold-500" />
+            Interactive Tools
+            <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform group-hover:rotate-180" />
+          </button>
+          
+          <div class="absolute left-0 top-full mt-1 w-80 rounded-2xl bg-white border border-slate-200 shadow-card-hover p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/tools/tdi-rate-calculator" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Calculator className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Texas TDI Rate Calculator</div>
+                <div class="text-xs text-slate-500">Exact promulgated rates & endorsements</div>
+              </div>
+            </a>
+            <a href="/tools/t47-affidavit-wizard" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <FileText className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">T-47 Affidavit Generator</div>
+                <div class="text-xs text-slate-500">Guided seller questionnaire & PDF</div>
+              </div>
+            </a>
+            <a href="/tools/homestead-exemption-assistant" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Building2 className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Homestead Exemption Assistant</div>
+                <div class="text-xs text-slate-500">Texas Form 50-114 pre-filler & county filing</div>
+              </div>
+            </a>
+            <a href="/tools/property-due-diligence-map" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Compass className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">North Texas GIS Map</div>
+                <div class="text-xs text-slate-500">RRC wells, MUD/PIDs, FEMA flood zones</div>
+              </div>
+            </a>
+            <a href="/tools/closing-suite-experience" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Sparkles className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Closing Suite Concierge</div>
+                <div class="text-xs text-slate-500">Customize celebration, executive, or pet suite</div>
+              </div>
+            </a>
+            <a href="/tools/deal-doctor" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <Briefcase className="w-5 h-5 text-gold-500 shrink-0 mt-0.5" />
+              <div>
+                <div class="font-semibold text-sm">Deal Doctor Underwriting Triage</div>
+                <div class="text-xs text-slate-500">Fast curative roadmap from Berry White Law</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 300-Page Knowledge Hub -->
+        <a href="/knowledge-hub" class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 transition-colors font-semibold">
+          Knowledge Hub
+        </a>
+
+        <!-- Locations -->
+        <div class="relative group">
+          <button class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 inline-flex items-center gap-1 focus:ring-2 focus:ring-gold-500 transition-colors">
+            <MapPin className="w-4 h-4 text-slate-400" />
+            Locations
+            <ChevronDown className="w-4 h-4 text-slate-400 group-hover:text-navy-900 transition-transform group-hover:rotate-180" />
+          </button>
+          
+          <div class="absolute left-0 top-full mt-1 w-64 rounded-2xl bg-white border border-slate-200 shadow-card-hover p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/locations/decatur-tx" class="flex flex-col p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <span class="font-semibold text-sm">Decatur Headquarters</span>
+              <span class="text-xs text-slate-500">405 Park West Court • (940) 627-3581</span>
+            </a>
+            <a href="/locations/bridgeport-tx" class="flex flex-col p-2.5 rounded-xl hover:bg-navy-50 text-slate-800 hover:text-navy-900 transition-colors">
+              <span class="font-semibold text-sm">Bridgeport Branch</span>
+              <span class="text-xs text-slate-500">1602 Halsell St • (940) 683-3581</span>
+            </a>
+            <div class="border-t border-slate-100 my-1"></div>
+            <a href="/locations" class="px-2.5 py-1.5 text-xs font-semibold text-gold-600 hover:text-gold-700 block">
+              View All North Texas Counties Served →
+            </a>
+          </div>
+        </div>
+
+        <a href="/about" class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 transition-colors">
+          About Us
+        </a>
+
+        <a href="/blog" class="px-3 py-2 rounded-lg text-navy-900 hover:text-navy-700 hover:bg-slate-100/70 transition-colors">
+          Articles
+        </a>
+
+      </nav>
+
+      <!-- Action Buttons & Quick Search -->
+      <div class="hidden sm:flex items-center gap-2.5">
+        <CommandSearchModal client:load />
+
+        <a href="/tools/tdi-rate-calculator" class="hidden xl:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-medium text-xs text-navy-900 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition-all">
+          <Calculator className="w-3.5 h-3.5 text-gold-600" />
+          Quick Quote
+        </a>
+        
+        <a href="/order" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-navy-950 bg-gold-500 hover:bg-gold-400 border border-gold-600/30 shadow-md hover:shadow-lg transition-all focus:ring-2 focus:ring-navy-900 focus:ring-offset-2">
+          <FileText className="w-4 h-4" />
+          <span>1-Click Contract Drop</span>
+        </a>
+      </div>
+
+
+      <!-- Mobile Menu Button -->
+      <div class="flex lg:hidden items-center gap-2">
+        <a href="/order" class="px-3 py-2 rounded-lg font-semibold text-xs text-navy-950 bg-gold-500">
+          Order Title
+        </a>
+        <button 
+          id="mobile-menu-btn" 
+          aria-label="Toggle Navigation Menu" 
+          aria-expanded="false" 
+          class="p-2.5 rounded-xl text-navy-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-gold-500"
+        >
+          <Menu className="w-6 h-6" id="menu-icon" />
+          <X className="w-6 h-6 hidden" id="close-icon" />
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+    <div class="grid grid-cols-2 gap-2 pb-3 border-b border-slate-100">
+      <a href="/tools/tdi-rate-calculator" class="flex items-center gap-2 p-3 rounded-xl bg-navy-50 text-navy-900 text-xs font-semibold">
+        <Calculator className="w-4 h-4 text-gold-600" />
+        TDI Calculator
+      </a>
+      <a href="/order" class="flex items-center gap-2 p-3 rounded-xl bg-gold-50 text-gold-900 text-xs font-semibold">
+        <FileText className="w-4 h-4 text-gold-700" />
+        Drop Contract
+      </a>
+    </div>
+
+    <nav class="flex flex-col space-y-1 font-medium text-slate-800 text-sm">
+      <a href="/knowledge-hub" class="p-2 rounded-lg hover:bg-slate-50 font-bold text-navy-900">📚 300-Page Knowledge Hub</a>
+      <a href="/services/title-insurance" class="p-2 rounded-lg hover:bg-slate-50">🛡️ Title Insurance Policies</a>
+      <a href="/services/closings-escrow" class="p-2 rounded-lg hover:bg-slate-50">🤝 Escrow & Settlement</a>
+      <a href="/services/public-title-plant" class="p-2 rounded-lg hover:bg-slate-50">📖 Sovereignty Title Plant</a>
+      <a href="/services/curative-legal-counsel" class="p-2 rounded-lg hover:bg-slate-50">⚖️ Curative Counsel (Berry White Law)</a>
+      <a href="/tools/t47-affidavit-wizard" class="p-2 rounded-lg hover:bg-slate-50">📝 T-47 Affidavit Generator</a>
+      <a href="/tools/homestead-exemption-assistant" class="p-2 rounded-lg hover:bg-slate-50">🏡 Homestead Exemption Assistant</a>
+      <a href="/tools/property-due-diligence-map" class="p-2 rounded-lg hover:bg-slate-50">🗺️ North Texas GIS Map</a>
+      <a href="/tools/closing-suite-experience" class="p-2 rounded-lg hover:bg-slate-50">✨ Closing Suite Concierge</a>
+      <a href="/tools/deal-doctor" class="p-2 rounded-lg hover:bg-slate-50">🩺 Deal Doctor Legal Triage</a>
+      <a href="/locations/decatur-tx" class="p-2 rounded-lg hover:bg-slate-50">📍 Decatur Headquarters</a>
+      <a href="/locations/bridgeport-tx" class="p-2 rounded-lg hover:bg-slate-50">📍 Bridgeport Branch</a>
+      <a href="/about" class="p-2 rounded-lg hover:bg-slate-50">ℹ️ About Wise Title (Since 1878)</a>
+      <a href="/blog" class="p-2 rounded-lg hover:bg-slate-50">📰 Archived Articles</a>
+      <a href="/resources/cyber-security" class="p-2 rounded-lg hover:bg-slate-50 text-red-700">🔒 Wire Fraud Defense</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  if (menuBtn && mobileMenu && menuIcon && closeIcon) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuIcon.classList.toggle('hidden', !isOpen);
+      closeIcon.classList.toggle('hidden', isOpen);
+    });
+  }
+</script>

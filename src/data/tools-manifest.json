@@ -1,0 +1,74 @@
+[
+  {
+    "toolId": "tdi_rate_calculator",
+    "name": "Texas Promulgated Title Insurance Rate Calculator",
+    "slug": "/tools/tdi-rate-calculator",
+    "component": "TdiRateCalculator",
+    "statutoryBasis": "Texas Department of Insurance Basic Manual Rule R-1, R-5, R-8",
+    "primaryAudience": ["buyer", "seller", "realtor", "lender", "investor"],
+    "fallbackSummary": "Calculates mandatory state-promulgated title insurance premiums in Texas. Features statutory basic rates, $100 simultaneous issue loan policy discount, and standard endorsements (T-19, T-38, T-42)."
+  },
+  {
+    "toolId": "contract_drop_parser",
+    "name": "1-Click AI Purchase Agreement OCR Intake",
+    "slug": "/order",
+    "component": "ContractDropParser",
+    "statutoryBasis": "TREC Promulgated One to Four Family & Commercial Contract Processing",
+    "primaryAudience": ["realtor", "broker", "transaction_coordinator"],
+    "fallbackSummary": "Automated contract intake engine extracting parties, legal description, sales price, earnest money, and closing dates for immediate title file opening."
+  },
+  {
+    "toolId": "t47_affidavit_wizard",
+    "name": "Texas T-47 Residential Real Property Affidavit Wizard",
+    "slug": "/tools/t47-affidavit-wizard",
+    "component": "T47Wizard",
+    "statutoryBasis": "Texas Insurance Code Rule P-2 & Form T-47",
+    "primaryAudience": ["seller", "realtor", "closer"],
+    "fallbackSummary": "Multi-step interactive questionnaire guiding sellers through Paragraph 4 modification declarations (pools, fences, easements) to avoid required new surveys."
+  },
+  {
+    "toolId": "homestead_exemption_assistant",
+    "name": "Texas Homestead Exemption Assistant (Form 50-114)",
+    "slug": "/tools/homestead-exemption-assistant",
+    "component": "HomesteadWizard",
+    "statutoryBasis": "Texas Tax Code §11.13 & §23.23 (10% Appraisal Cap)",
+    "primaryAudience": ["homeowner", "buyer"],
+    "fallbackSummary": "Pre-fills Texas Comptroller Form 50-114 for general residence homestead, over-65 freeze, and disabled veteran property tax exemptions across Wise, Denton, and Tarrant CADs."
+  },
+  {
+    "toolId": "due_diligence_gis_map",
+    "name": "Wise County Property Due Diligence GIS Map",
+    "slug": "/tools/property-due-diligence-map",
+    "component": "DueDiligenceMap",
+    "statutoryBasis": "Texas Railroad Commission (RRC) & FEMA Floodplain Standards",
+    "primaryAudience": ["land_buyer", "investor", "commercial_developer"],
+    "fallbackSummary": "Interactive North Texas mapping layers showcasing active/plugged Barnett Shale gas wells, MUD/PID taxing districts, FEMA 100-year floodways, and county parcel lines."
+  },
+  {
+    "toolId": "seller_net_sheet",
+    "name": "Texas Real Estate Seller Net Sheet Estimator",
+    "slug": "/tools/seller-net-sheet",
+    "component": "SellerNetSheet",
+    "statutoryBasis": "Texas Settlement Statement & Tax Proration Customs",
+    "primaryAudience": ["seller", "realtor"],
+    "fallbackSummary": "Calculates estimated net cash proceeds after deducting payoff mortgages, title policies, broker commissions, recording fees, and calendar-day tax prorations."
+  },
+  {
+    "toolId": "closing_suite_concierge",
+    "name": "Closing Suite & Hospitality Experience Concierge",
+    "slug": "/tools/closing-suite-experience",
+    "component": "ClosingSuiteSelector",
+    "statutoryBasis": "Wise County Title Company Decatur & Bridgeport Hospitality Protocols",
+    "primaryAudience": ["buyer", "seller", "realtor"],
+    "fallbackSummary": "Allows buyers and sellers to customize their signing atmosphere (Celebration Suite, Executive Lounge, Family/Pet-Friendly, or 100% Digital RON) and beverage preferences."
+  },
+  {
+    "toolId": "deal_doctor_triage",
+    "name": "Deal Doctor Title Cloud Underwriting Triage",
+    "slug": "/tools/deal-doctor",
+    "component": "DealDoctor",
+    "statutoryBasis": "The Berry White Law Firm, PLLC In-House Curative Legal Protocol",
+    "primaryAudience": ["realtor", "investor", "attorney"],
+    "fallbackSummary": "Diagnostic triage engine identifying fatal title clouds (unreleased deeds of trust, unprobated heirship, owelty liens) with 1-click dispatch to Berry White, J.D."
+  }
+]
