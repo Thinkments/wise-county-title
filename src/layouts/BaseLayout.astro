@@ -2,7 +2,9 @@
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
 import SchemaGraph from '../components/seo/SchemaGraph.astro';
+import AiConciergeModal from '../components/interactive-suite/assistant/AiConciergeModal';
 import '../styles/global.css';
+
 
 interface Props {
   title?: string;
@@ -98,5 +100,9 @@ const {
 
     <Footer />
 
+    <!-- 24/7 Floating AI Deal Doctor & Knowledge Concierge -->
+    <AiConciergeModal client:idle />
+
   </body>
 </html>
+

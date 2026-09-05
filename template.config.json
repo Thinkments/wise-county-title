@@ -1,0 +1,30 @@
+{
+  "templateName": "Thinkments Authority Engine",
+  "version": "2.0.0",
+  "stack": {
+    "framework": "Astro 4 SSG",
+    "styling": "Tailwind CSS v3",
+    "islands": "React 18",
+    "icons": "lucide-react",
+    "pdfEngine": "jspdf",
+    "mapping": "leaflet",
+    "deployment": "Netlify Production (spicer@thinkments.com)"
+  },
+  "standardTools": [
+    "tdi_rate_calculator",
+    "contract_drop_intake",
+    "t47_affidavit_wizard",
+    "seller_net_sheet",
+    "gis_due_diligence_map",
+    "homestead_exemption_assistant",
+    "closing_suite_concierge",
+    "deal_doctor_curative_triage",
+    "ai_concierge_modal",
+    "universal_command_search"
+  ],
+  "agentsArchitecture": {
+    "rulesDirectory": ".agents/rules",
+    "skillsDirectory": ".agents/skills",
+    "mcpConfig": ".agents/mcp_config.json"
+  }
+}

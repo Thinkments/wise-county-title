@@ -1,0 +1,38 @@
+name: CI & Taxonomy Build Verification
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify 300-Topic Taxonomy Generator
+        run: node scratch/build_taxonomy.js
+
+      - name: Run Astro Production Build
+        run: npx astro build
+
+      - name: Verify Segmented Sitemaps Exist
+        run: |
+          test -f dist/sitemap-index.xml || exit 1
+          test -f dist/sitemap-knowledge-hub.xml || exit 1
+          test -f dist/sitemap-tools.xml || exit 1
+          test -f dist/sitemap-locations.xml || exit 1
+          test -f dist/robots.txt || exit 1
+          echo "All sitemaps and robots directives verified successfully!"

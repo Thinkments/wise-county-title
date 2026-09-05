@@ -1,0 +1,24 @@
+name: Lighthouse Performance & SEO Audit
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Lighthouse on Live Netlify Production
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: |
+            https://wise-county-title-texas.netlify.app/
+            https://wise-county-title-texas.netlify.app/tools/tdi-rate-calculator
+            https://wise-county-title-texas.netlify.app/knowledge-hub
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          configPath: '.lighthouserc.json'

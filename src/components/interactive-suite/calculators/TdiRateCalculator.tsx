@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { calculateTdiRates } from '../../../lib/tdi-rates';
 import { formatCurrency } from '../../../lib/utils';
+import { generateCoBrandedTdiQuotePdf } from '../../../lib/pdf-export';
 import { 
   Calculator, 
   HelpCircle, 
@@ -12,7 +13,11 @@ import {
   ChevronDown, 
   ChevronUp, 
   DollarSign, 
-  FileText 
+  FileText,
+  Download,
+  User,
+  Building,
+  X
 } from 'lucide-react';
 
 export default function TdiRateCalculator() {
@@ -28,6 +33,13 @@ export default function TdiRateCalculator() {
   const [includeT42_1, setIncludeT42_1] = useState<boolean>(false);
   const [includeT26, setIncludeT26] = useState<boolean>(false);
   const [includeT17, setIncludeT17] = useState<boolean>(false);
+
+  // Co-Branding Modal State
+  const [showPdfModal, setShowPdfModal] = useState<boolean>(false);
+  const [agentName, setAgentName] = useState<string>('');
+  const [brokerageName, setBrokerageName] = useState<string>('');
+  const [agentPhone, setAgentPhone] = useState<string>('');
+  const [agentEmail, setAgentEmail] = useState<string>('');
 
   // Rate Calculation Memo
   const quote = useMemo(() => {
@@ -62,6 +74,29 @@ export default function TdiRateCalculator() {
     window.print();
   };
 
+  const handleGeneratePdf = () => {
+    generateCoBrandedTdiQuotePdf(
+      {
+        salesPrice: transactionType === 'purchase' ? purchasePrice : 0,
+        loanAmount: loanAmount,
+        ownersPolicyPremium: quote.basicPremium,
+        lendersPolicyPremium: quote.loanPolicyPremium,
+        totalEndorsements: quote.totalEndorsements,
+        settlementFee: quote.escrowSettlementFee,
+        recordingFees: quote.countyRecordingFees,
+        simultaneousSavings: quote.simultaneousIssueSavings,
+        totalTitleEstimate: quote.totalTitleEstimate,
+      },
+      {
+        agentName,
+        brokerageName,
+        agentPhone,
+        agentEmail,
+      }
+    );
+    setShowPdfModal(false);
+  };
+
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
       
@@ -81,18 +116,27 @@ export default function TdiRateCalculator() {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-auto">
+          <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
+            <button
+              type="button"
+              onClick={() => setShowPdfModal(true)}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-gold-500 hover:bg-gold-400 text-navy-950 shadow-md transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              Co-Branded PDF
+            </button>
             <button
               type="button"
               onClick={handlePrint}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-800 hover:bg-navy-700 text-slate-200 border border-slate-700 shadow-sm transition-colors"
             >
               <Printer className="w-4 h-4 text-gold-400" />
-              Print / Save Quote
+              Print
             </button>
           </div>
         </div>
       </div>
+
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         
@@ -408,6 +452,106 @@ export default function TdiRateCalculator() {
 
       </div>
 
+      {/* Co-Branded PDF Modal */}
+      {showPdfModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-slate-200 space-y-5">
+            <div className="flex justify-between items-start">
+              <div>
+                <span className="badge-gold">Realtor & Broker Tool</span>
+                <h3 className="font-serif font-bold text-xl text-navy-950 mt-1">
+                  Customize Co-Branded PDF
+                </h3>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Add your contact details to generate a branded title quote for your client.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowPdfModal(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-navy-900 hover:bg-slate-100"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-3.5 text-xs">
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Agent / Loan Officer Name
+                </label>
+                <input
+                  type="text"
+                  value={agentName}
+                  onChange={(e) => setAgentName(e.target.value)}
+                  placeholder="e.g. Sarah Jenkins"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 text-slate-900 font-medium"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Brokerage / Lending Company
+                </label>
+                <input
+                  type="text"
+                  value={brokerageName}
+                  onChange={(e) => setBrokerageName(e.target.value)}
+                  placeholder="e.g. North Texas Land & Realty"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 text-slate-900 font-medium"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    value={agentPhone}
+                    onChange={(e) => setAgentPhone(e.target.value)}
+                    placeholder="(940) 555-0199"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 text-slate-900"
+                  />
+                </div>
+                <div>
+                  <label className="block font-bold text-slate-700 uppercase tracking-wider mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    value={agentEmail}
+                    onChange={(e) => setAgentEmail(e.target.value)}
+                    placeholder="agent@brokerage.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 text-slate-900"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleGeneratePdf}
+                className="flex-1 btn-gold text-xs flex items-center justify-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Download PDF Estimate
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowPdfModal(false)}
+                className="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
+

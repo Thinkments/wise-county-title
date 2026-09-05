@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { Scale, CheckCircle2, AlertTriangle, Send, Sparkles, ShieldCheck, ArrowRight, Clock, ExternalLink } from 'lucide-react';
+import { forwardToWebhook } from '../../../lib/webhook';
 
 interface ScenarioDef {
+
   id: string;
   title: string;
   category: string;
@@ -90,6 +92,7 @@ const COMMON_SCENARIOS: ScenarioDef[] = [
 ];
 
 export default function DealDoctor() {
+
   const [selectedId, setSelectedId] = useState<string>(COMMON_SCENARIOS[0].id);
   const [customNotes, setCustomNotes] = useState<string>('');
   const [agentName, setAgentName] = useState<string>('');
@@ -99,10 +102,25 @@ export default function DealDoctor() {
 
   const activeScenario = COMMON_SCENARIOS.find((s) => s.id === selectedId) || COMMON_SCENARIOS[0];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
+
+    await forwardToWebhook({
+      eventType: 'deal_doctor_inquiry',
+      timestamp: new Date().toISOString(),
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      data: {
+        scenarioId: selectedId,
+        scenarioTitle: activeScenario.title,
+        customNotes,
+        agentName,
+        agentPhone,
+        agentEmail,
+      },
+    });
   };
+
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">

@@ -15,8 +15,10 @@ import {
   Phone
 } from 'lucide-react';
 import { formatCurrency } from '../../../lib/utils';
+import { forwardToWebhook } from '../../../lib/webhook';
 
 export default function ContractDropParser() {
+
   const [isDragging, setIsDragging] = useState(false);
   const [isParsing, setIsParsing] = useState(false);
   const [parsedData, setParsedData] = useState<any>(null);
@@ -64,12 +66,33 @@ export default function ContractDropParser() {
     handleFileUpload(e.dataTransfer.files);
   };
 
-  const handleSubmitOrder = (e: React.FormEvent) => {
+  const handleSubmitOrder = async (e: React.FormEvent) => {
+
     e.preventDefault();
     const newGf = `GF-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     setGfNumber(newGf);
     setIsSubmitted(true);
+
+    // Dispatch webhook payload to CRM / Escrow Desk
+    await forwardToWebhook({
+      eventType: 'contract_drop',
+      timestamp: new Date().toISOString(),
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      data: {
+        gfNumber: newGf,
+        buyerName,
+        sellerName,
+        propertyAddress,
+        salesPrice,
+        earnestMoney,
+        closingDate,
+        listingAgent,
+        buyerAgent,
+        closerPreference,
+      },
+    });
   };
+
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
