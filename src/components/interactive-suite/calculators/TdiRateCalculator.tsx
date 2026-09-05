@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { calculateTdiRates } from '../../../lib/tdi-rates';
 import { formatCurrency } from '../../../lib/utils';
 import { generateCoBrandedTdiQuotePdf } from '../../../lib/pdf-export';
+import { forwardToWebhook } from '../../../lib/webhook';
 import { 
   Calculator, 
   HelpCircle, 
@@ -74,7 +75,7 @@ export default function TdiRateCalculator() {
     window.print();
   };
 
-  const handleGeneratePdf = () => {
+  const handleGeneratePdf = async () => {
     generateCoBrandedTdiQuotePdf(
       {
         salesPrice: transactionType === 'purchase' ? purchasePrice : 0,
@@ -95,6 +96,24 @@ export default function TdiRateCalculator() {
       }
     );
     setShowPdfModal(false);
+
+    if (agentEmail || agentPhone || agentName) {
+      await forwardToWebhook({
+        eventType: 'quote_request',
+        timestamp: new Date().toISOString(),
+        sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+        data: {
+          transactionType,
+          purchasePrice,
+          loanAmount,
+          totalTitleEstimate: quote.totalTitleEstimate,
+          agentName,
+          brokerageName,
+          agentPhone,
+          agentEmail,
+        },
+      });
+    }
   };
 
   return (

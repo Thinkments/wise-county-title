@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { FileText, CheckCircle2, AlertTriangle, Printer, Sparkles, ShieldCheck, ArrowRight, ArrowLeft } from 'lucide-react';
+import { forwardToWebhook } from '../../../lib/webhook';
 
 export default function T47Wizard() {
   const [step, setStep] = useState<number>(1);
 
   // Form State
-  const [affiantName, setAffiantName] = useState('John & Sarah Miller');
-  const [propertyAddress, setPropertyAddress] = useState('1402 Country Club Dr, Decatur, TX 76234');
-  const [legalDescription, setLegalDescription] = useState('Lot 12, Block 4, Park West Addition, Wise County, Texas');
+  const [affiantName, setAffiantName] = useState('');
+  const [propertyAddress, setPropertyAddress] = useState('');
+  const [legalDescription, setLegalDescription] = useState('');
   const [county, setCounty] = useState('Wise');
-  const [surveyDate, setSurveyDate] = useState('2021-06-15');
-  const [surveyorName, setSurveyorName] = useState('North Texas Land Surveying LLC');
+  const [surveyDate, setSurveyDate] = useState('');
+  const [surveyorName, setSurveyorName] = useState('');
   
   // Modification flags
   const [hasFenceChanges, setHasFenceChanges] = useState(false);
@@ -20,6 +21,38 @@ export default function T47Wizard() {
   const [modificationsDescription, setModificationsDescription] = useState('');
 
   const hasAnyModifications = hasFenceChanges || hasStructureChanges || hasBoundaryChanges || hasEasementChanges;
+
+  const handleLoadSample = () => {
+    setAffiantName('John & Sarah Miller');
+    setPropertyAddress('1402 Country Club Dr, Decatur, TX 76234');
+    setLegalDescription('Lot 12, Block 4, Park West Addition, Wise County, Texas');
+    setCounty('Wise');
+    setSurveyDate('2021-06-15');
+    setSurveyorName('North Texas Land Surveying LLC');
+    setHasFenceChanges(false);
+    setHasStructureChanges(false);
+    setHasBoundaryChanges(false);
+    setHasEasementChanges(false);
+  };
+
+  const handlePrintAndForward = async () => {
+    window.print();
+    await forwardToWebhook({
+      eventType: 't47_generation',
+      timestamp: new Date().toISOString(),
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      data: {
+        affiantName,
+        propertyAddress,
+        legalDescription,
+        county,
+        surveyDate,
+        surveyorName,
+        hasAnyModifications,
+        modificationsDescription,
+      },
+    });
+  };
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
@@ -131,7 +164,14 @@ export default function T47Wizard() {
               </div>
             </div>
 
-            <div className="flex justify-end pt-4">
+            <div className="flex items-center justify-between pt-4">
+              <button
+                type="button"
+                onClick={handleLoadSample}
+                className="text-xs text-navy-700 hover:text-gold-600 underline font-medium"
+              >
+                Load Sample Data (Test Demo)
+              </button>
               <button
                 type="button"
                 onClick={() => setStep(2)}
@@ -296,7 +336,7 @@ export default function T47Wizard() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => window.print()}
+                  onClick={handlePrintAndForward}
                   className="btn-gold text-xs flex items-center gap-1.5"
                 >
                   <Printer className="w-4 h-4" />

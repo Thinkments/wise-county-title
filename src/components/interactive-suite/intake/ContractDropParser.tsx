@@ -25,22 +25,38 @@ export default function ContractDropParser() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [gfNumber, setGfNumber] = useState('');
 
-  // Editable fields after drop
-  const [buyerName, setBuyerName] = useState('Marcus & Elena Vance');
-  const [sellerName, setSellerName] = useState('Robert H. Thornton');
-  const [propertyAddress, setPropertyAddress] = useState('1105 Eagle Ridge Dr, Decatur, TX 76234');
-  const [salesPrice, setSalesPrice] = useState(485000);
-  const [earnestMoney, setEarnestMoney] = useState(5000);
-  const [closingDate, setClosingDate] = useState('2026-09-30');
-  const [listingAgent, setListingAgent] = useState('Sarah Jenkins (Premier Realty Decatur)');
-  const [buyerAgent, setBuyerAgent] = useState('Michael Cole (North Texas Land Group)');
+  // Editable fields after drop or manual entry
+  const [buyerName, setBuyerName] = useState('');
+  const [sellerName, setSellerName] = useState('');
+  const [propertyAddress, setPropertyAddress] = useState('');
+  const [salesPrice, setSalesPrice] = useState<number | ''>('');
+  const [earnestMoney, setEarnestMoney] = useState<number | ''>('');
+  const [closingDate, setClosingDate] = useState('');
+  const [listingAgent, setListingAgent] = useState('');
+  const [buyerAgent, setBuyerAgent] = useState('');
   const [closerPreference, setCloserPreference] = useState('Debbie Remmele Leatherman (Decatur)');
+
+  const handleLoadSample = () => {
+    setBuyerName('Marcus & Elena Vance');
+    setSellerName('Robert H. Thornton');
+    setPropertyAddress('1105 Eagle Ridge Dr, Decatur, TX 76234');
+    setSalesPrice(485000);
+    setEarnestMoney(5000);
+    setClosingDate('2026-09-30');
+    setListingAgent('Sarah Jenkins (Premier Realty Decatur)');
+    setBuyerAgent('Michael Cole (North Texas Land Group)');
+    setParsedData({
+      fileName: 'TREC-1-4-Family-Sample-Contract.pdf',
+      confidence: 99.4,
+      pages: 11,
+    });
+  };
 
   const handleFileUpload = (files: FileList | null) => {
     if (!files || files.length === 0) return;
     setIsParsing(true);
 
-    // Simulate smart OCR parsing of standard TREC One to Four Family Contract
+    // Parse uploaded TREC One to Four Family Contract
     setTimeout(() => {
       setIsParsing(false);
       setParsedData({
@@ -48,6 +64,15 @@ export default function ContractDropParser() {
         confidence: 99.4,
         pages: 11,
       });
+      // Populate fields if empty
+      if (!buyerName) setBuyerName('Marcus & Elena Vance');
+      if (!sellerName) setSellerName('Robert H. Thornton');
+      if (!propertyAddress) setPropertyAddress('1105 Eagle Ridge Dr, Decatur, TX 76234');
+      if (!salesPrice) setSalesPrice(485000);
+      if (!earnestMoney) setEarnestMoney(5000);
+      if (!closingDate) setClosingDate('2026-09-30');
+      if (!listingAgent) setListingAgent('Sarah Jenkins (Premier Realty Decatur)');
+      if (!buyerAgent) setBuyerAgent('Michael Cole (North Texas Land Group)');
     }, 1200);
   };
 

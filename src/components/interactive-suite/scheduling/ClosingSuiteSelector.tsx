@@ -78,6 +78,8 @@ const SUITE_OPTIONS: SuiteOption[] = [
   },
 ];
 
+import { forwardToWebhook } from '../../../lib/webhook';
+
 export default function ClosingSuiteSelector() {
   const [selectedOffice, setSelectedOffice] = useState<'decatur' | 'bridgeport'>('decatur');
   const [selectedSuiteId, setSelectedSuiteId] = useState<string>('celebration');
@@ -89,7 +91,7 @@ export default function ClosingSuiteSelector() {
 
   const selectedSuite = SUITE_OPTIONS.find((s) => s.id === selectedSuiteId) || SUITE_OPTIONS[0];
 
-  const handleReserve = (e: React.FormEvent) => {
+  const handleReserve = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsReserved(true);
 
@@ -101,6 +103,21 @@ export default function ClosingSuiteSelector() {
         colors: ['#0B2545', '#C59B27', '#E2B842', '#133C55'],
       });
     }
+
+    await forwardToWebhook({
+      eventType: 'closing_suite_reservation',
+      timestamp: new Date().toISOString(),
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      data: {
+        office: selectedOffice,
+        suiteId: selectedSuiteId,
+        suiteName: selectedSuite.name,
+        beverageSelection,
+        fileNumber,
+        buyerSellerName,
+        contactPhone,
+      },
+    });
   };
 
   return (

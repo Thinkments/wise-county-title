@@ -116,50 +116,128 @@ const breadcrumbItems = [
           </div>
 
           <form 
+            id="contact-form"
             name="contact-inquiry" 
             method="POST" 
             data-netlify="true" 
+            netlify-honeypot="bot-field"
             class="space-y-4 text-xs" 
-            onsubmit="event.preventDefault(); alert('Thank you for contacting Wise County Title Company. An escrow specialist will be in touch shortly.');"
           >
             <input type="hidden" name="form-name" value="contact-inquiry" />
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="space-y-1">
-                <label class="font-semibold text-slate-700">Full Name *</label>
-                <input type="text" name="name" required placeholder="Jane Doe" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
+            <p class="hidden">
+              <label>Don’t fill this out: <input name="bot-field" /></label>
+            </p>
+            
+            <div id="form-success-banner" class="hidden p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-950 space-y-1">
+              <div class="font-bold flex items-center gap-1.5">
+                <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Message Received!
               </div>
-              <div class="space-y-1">
-                <label class="font-semibold text-slate-700">Phone Number *</label>
-                <input type="tel" name="phone" required placeholder="(940) 555-0123" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
+              <p class="text-xs text-emerald-800">
+                Thank you for contacting Wise County Title Company. An escrow officer will respond within 1 business hour (or directly to your email).
+              </p>
+            </div>
+
+            <div id="form-fields" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="space-y-1">
+                  <label class="font-semibold text-slate-700">Full Name *</label>
+                  <input type="text" name="name" required placeholder="Jane Doe" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
+                </div>
+                <div class="space-y-1">
+                  <label class="font-semibold text-slate-700">Phone Number *</label>
+                  <input type="tel" name="phone" required placeholder="(940) 555-0123" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
+                </div>
               </div>
+
+              <div class="space-y-1">
+                <label class="font-semibold text-slate-700">Email Address *</label>
+                <input type="email" name="email" required placeholder="jane@example.com" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
+              </div>
+
+              <div class="space-y-1">
+                <label class="font-semibold text-slate-700">Inquiry Topic</label>
+                <select name="topic" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
+                  <option value="General Escrow or Closing Inquiry">General Escrow or Closing Inquiry</option>
+                  <option value="Sovereignty Title Plant Records Search">Sovereignty Title Plant Records Search</option>
+                  <option value="Curative Legal Assistance (Berry White Law)">Curative Legal Assistance (Berry White Law)</option>
+                  <option value="Commercial Development & ALTA Endorsements">Commercial Development & ALTA Endorsements</option>
+                  <option value="Farm & Ranch 1-d-1 Valuation Question">Farm & Ranch 1-d-1 Valuation Question</option>
+                </select>
+              </div>
+
+              <div class="space-y-1">
+                <label class="font-semibold text-slate-700">Message / Transaction Details</label>
+                <textarea name="message" rows="4" placeholder="Provide property address or transaction details..." class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500"></textarea>
+              </div>
+
+              <button id="submit-btn" type="submit" class="w-full btn-gold text-xs py-3 flex items-center justify-center gap-2">
+                <Send className="w-4 h-4" /> Send Message
+              </button>
             </div>
-
-
-            <div class="space-y-1">
-              <label class="font-semibold text-slate-700">Email Address *</label>
-              <input type="email" required placeholder="jane@example.com" class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500" />
-            </div>
-
-            <div class="space-y-1">
-              <label class="font-semibold text-slate-700">Inquiry Topic</label>
-              <select class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500">
-                <option>General Escrow or Closing Inquiry</option>
-                <option>Sovereignty Title Plant Records Search</option>
-                <option>Curative Legal Assistance (Berry White Law)</option>
-                <option>Commercial Development & ALTA Endorsements</option>
-                <option>Farm & Ranch 1-d-1 Valuation Question</option>
-              </select>
-            </div>
-
-            <div class="space-y-1">
-              <label class="font-semibold text-slate-700">Message / Transaction Details</label>
-              <textarea rows="4" placeholder="Provide property address or details..." class="w-full p-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-gold-500"></textarea>
-            </div>
-
-            <button type="submit" class="w-full btn-gold text-xs py-3 flex items-center justify-center gap-2">
-              <Send className="w-4 h-4" /> Send Message
-            </button>
           </form>
+
+          <script is:inline>
+            const form = document.getElementById('contact-form');
+            if (form) {
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) {
+                  submitBtn.disabled = true;
+                  submitBtn.innerText = 'Sending...';
+                }
+
+                const formData = new FormData(form);
+                const dataObj = Object.fromEntries(formData.entries());
+
+                try {
+                  // 1. Submit to Netlify Forms endpoint
+                  await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString(),
+                  });
+
+                  // 2. Dispatch to custom webhook if configured
+                  const webhookUrl = window.localStorage.getItem('WISE_WEBHOOK_URL');
+                  if (webhookUrl) {
+                    await fetch(webhookUrl, {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({
+                        eventType: 'contact_inquiry',
+                        timestamp: new Date().toISOString(),
+                        sourceUrl: window.location.href,
+                        data: dataObj,
+                      }),
+                    }).catch(() => {});
+                  }
+
+                  // 3. Save to local activity log
+                  const activityLog = JSON.parse(window.localStorage.getItem('WISE_ACTIVITY_LOG') || '[]');
+                  activityLog.unshift({
+                    eventType: 'contact_inquiry',
+                    timestamp: new Date().toISOString(),
+                    data: dataObj,
+                  });
+                  window.localStorage.setItem('WISE_ACTIVITY_LOG', JSON.stringify(activityLog.slice(0, 50)));
+
+                  // Show success banner
+                  const banner = document.getElementById('form-success-banner');
+                  const fields = document.getElementById('form-fields');
+                  if (banner && fields) {
+                    fields.classList.add('hidden');
+                    banner.classList.remove('hidden');
+                  }
+                } catch (err) {
+                  alert('Thank you for contacting Wise County Title Company. Your message has been recorded.');
+                }
+              });
+            }
+          </script>
         </div>
 
       </div>

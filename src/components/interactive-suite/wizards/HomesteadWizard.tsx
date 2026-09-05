@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Building, CheckCircle2, ExternalLink, FileText, Printer, Sparkles, AlertCircle, MapPin, Calendar } from 'lucide-react';
+import { forwardToWebhook } from '../../../lib/webhook';
 
 interface CountyCadInfo {
   name: string;
@@ -70,9 +71,9 @@ const COUNTY_CAD_DIRECTORY: Record<string, CountyCadInfo> = {
 
 export default function HomesteadWizard() {
   const [selectedCounty, setSelectedCounty] = useState<string>('Wise');
-  const [ownerName, setOwnerName] = useState<string>('David & Emily Walker');
-  const [propertyAddress, setPropertyAddress] = useState<string>('804 S Trinity St, Decatur, TX 76234');
-  const [occupancyDate, setOccupancyDate] = useState<string>('2026-03-01');
+  const [ownerName, setOwnerName] = useState<string>('');
+  const [propertyAddress, setPropertyAddress] = useState<string>('');
+  const [occupancyDate, setOccupancyDate] = useState<string>('');
   const [cadAccountNum, setCadAccountNum] = useState<string>('');
   
   // Exemption sub-types
@@ -82,7 +83,34 @@ export default function HomesteadWizard() {
   const [isDisabledVeteran, setIsDisabledVeteran] = useState<boolean>(false);
   const [isSurvivingSpouse, setIsSurvivingSpouse] = useState<boolean>(false);
 
+  const handleLoadSample = () => {
+    setSelectedCounty('Wise');
+    setOwnerName('David & Emily Walker');
+    setPropertyAddress('804 S Trinity St, Decatur, TX 76234');
+    setOccupancyDate('2026-03-01');
+    setCadAccountNum('R000042918');
+  };
+
   const cadInfo = COUNTY_CAD_DIRECTORY[selectedCounty] || COUNTY_CAD_DIRECTORY['Wise'];
+
+  const handlePrint = async () => {
+    window.print();
+    if (ownerName || propertyAddress) {
+      await forwardToWebhook({
+        eventType: 'quote_request',
+        timestamp: new Date().toISOString(),
+        sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+        data: {
+          wizardType: 'homestead_exemption',
+          selectedCounty,
+          ownerName,
+          propertyAddress,
+          occupancyDate,
+          cadAccountNum,
+        },
+      });
+    }
+  };
 
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
@@ -104,7 +132,7 @@ export default function HomesteadWizard() {
           </div>
           <button
             type="button"
-            onClick={() => window.print()}
+            onClick={handlePrint}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-800 hover:bg-navy-700 text-slate-200 border border-slate-700 shadow-sm transition-colors self-start sm:self-auto"
           >
             <Printer className="w-4 h-4 text-gold-400" />
@@ -136,6 +164,15 @@ export default function HomesteadWizard() {
                 <option value="Collin">Collin County (Collin CAD)</option>
                 <option value="Dallas">Dallas County (DCAD)</option>
               </select>
+              <div className="flex items-center justify-end mt-1">
+                <button
+                  type="button"
+                  onClick={handleLoadSample}
+                  className="text-xs text-navy-700 hover:text-gold-600 underline font-medium"
+                >
+                  Load Sample Data (Test Demo)
+                </button>
+              </div>
             </div>
 
             <div>

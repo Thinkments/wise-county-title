@@ -3,6 +3,8 @@ import { calculateBasicTdiPremium } from '../../../lib/tdi-rates';
 import { formatCurrency } from '../../../lib/utils';
 import { DollarSign, Printer, Download, Sparkles, Building, ArrowRight, ShieldCheck } from 'lucide-react';
 
+import { forwardToWebhook } from '../../../lib/webhook';
+
 export default function SellerNetSheet() {
   const [salesPrice, setSalesPrice] = useState<number>(450000);
   const [existingMortgagePayoff, setExistingMortgagePayoff] = useState<number>(185000);
@@ -56,6 +58,22 @@ export default function SellerNetSheet() {
     homeWarrantyFee,
   ]);
 
+  const handlePrint = async () => {
+    window.print();
+    await forwardToWebhook({
+      eventType: 'quote_request',
+      timestamp: new Date().toISOString(),
+      sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
+      data: {
+        tool: 'seller_net_sheet',
+        salesPrice,
+        existingMortgagePayoff,
+        brokerCommissionPct,
+        estimatedNetProceeds: netResults.estimatedNetProceeds,
+      },
+    });
+  };
+
   return (
     <div className="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
       
@@ -74,7 +92,7 @@ export default function SellerNetSheet() {
           </div>
           <button
             type="button"
-            onClick={() => window.print()}
+            onClick={handlePrint}
             className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-navy-800 hover:bg-navy-700 text-slate-200 border border-slate-700 shadow-sm transition-colors self-start sm:self-auto"
           >
             <Printer className="w-4 h-4 text-gold-400" />
